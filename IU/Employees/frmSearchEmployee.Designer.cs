@@ -44,6 +44,8 @@ namespace IU.Employees
             this.txtID = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
+            this.cbJob = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +55,7 @@ namespace IU.Employees
             this.btnSaveChanges.Enabled = false;
             this.btnSaveChanges.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveChanges.ForeColor = System.Drawing.Color.White;
-            this.btnSaveChanges.Location = new System.Drawing.Point(500, 436);
+            this.btnSaveChanges.Location = new System.Drawing.Point(504, 544);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Size = new System.Drawing.Size(155, 39);
             this.btnSaveChanges.TabIndex = 49;
@@ -66,7 +68,7 @@ namespace IU.Employees
             this.btnModify.Enabled = false;
             this.btnModify.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModify.ForeColor = System.Drawing.Color.White;
-            this.btnModify.Location = new System.Drawing.Point(246, 436);
+            this.btnModify.Location = new System.Drawing.Point(246, 544);
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(171, 39);
             this.btnModify.TabIndex = 48;
@@ -91,7 +93,7 @@ namespace IU.Employees
             this.lblLastName.AutoSize = true;
             this.lblLastName.Font = new System.Drawing.Font("Rockwell", 25F);
             this.lblLastName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.lblLastName.Location = new System.Drawing.Point(51, 193);
+            this.lblLastName.Location = new System.Drawing.Point(51, 301);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(179, 38);
             this.lblLastName.TabIndex = 46;
@@ -100,7 +102,7 @@ namespace IU.Employees
             // txtPhone
             // 
             this.txtPhone.Enabled = false;
-            this.txtPhone.Location = new System.Drawing.Point(246, 386);
+            this.txtPhone.Location = new System.Drawing.Point(246, 494);
             this.txtPhone.MaxLength = 8;
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(171, 20);
@@ -111,7 +113,7 @@ namespace IU.Employees
             this.lblPhone.AutoSize = true;
             this.lblPhone.Font = new System.Drawing.Font("Rockwell", 25F);
             this.lblPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.lblPhone.Location = new System.Drawing.Point(51, 368);
+            this.lblPhone.Location = new System.Drawing.Point(51, 476);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(161, 38);
             this.lblPhone.TabIndex = 44;
@@ -122,7 +124,7 @@ namespace IU.Employees
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Rockwell", 25F);
             this.lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.lblEmail.Location = new System.Drawing.Point(51, 312);
+            this.lblEmail.Location = new System.Drawing.Point(51, 420);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(115, 38);
             this.lblEmail.TabIndex = 43;
@@ -153,7 +155,7 @@ namespace IU.Employees
             // txtEmail
             // 
             this.txtEmail.Enabled = false;
-            this.txtEmail.Location = new System.Drawing.Point(246, 328);
+            this.txtEmail.Location = new System.Drawing.Point(246, 436);
             this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(171, 20);
@@ -190,18 +192,40 @@ namespace IU.Employees
             // txtAddress
             // 
             this.txtAddress.Enabled = false;
-            this.txtAddress.Location = new System.Drawing.Point(246, 193);
+            this.txtAddress.Location = new System.Drawing.Point(246, 301);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(171, 107);
             this.txtAddress.TabIndex = 51;
+            // 
+            // cbJob
+            // 
+            this.cbJob.Enabled = false;
+            this.cbJob.FormattingEnabled = true;
+            this.cbJob.Location = new System.Drawing.Point(246, 234);
+            this.cbJob.Name = "cbJob";
+            this.cbJob.Size = new System.Drawing.Size(171, 21);
+            this.cbJob.TabIndex = 53;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Rockwell", 25F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            this.label1.Location = new System.Drawing.Point(51, 218);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(129, 38);
+            this.label1.TabIndex = 52;
+            this.label1.Text = "Puesto:";
             // 
             // frmSearchEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(241)))), ((int)(((byte)(221)))));
-            this.ClientSize = new System.Drawing.Size(742, 501);
+            this.ClientSize = new System.Drawing.Size(742, 606);
+            this.Controls.Add(this.cbJob);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSaveChanges);
@@ -242,5 +266,7 @@ namespace IU.Employees
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.ComboBox cbJob;
+        private System.Windows.Forms.Label label1;
     }
 }
