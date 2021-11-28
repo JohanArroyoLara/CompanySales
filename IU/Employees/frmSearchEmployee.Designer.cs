@@ -61,6 +61,7 @@ namespace IU.Employees
             this.btnSaveChanges.TabIndex = 49;
             this.btnSaveChanges.Text = "Actualizar";
             this.btnSaveChanges.UseVisualStyleBackColor = false;
+            this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
             // 
             // btnModify
             // 
@@ -74,6 +75,7 @@ namespace IU.Employees
             this.btnModify.TabIndex = 48;
             this.btnModify.Text = "Modificar";
             this.btnModify.UseVisualStyleBackColor = false;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click_1);
             // 
             // btnSearch
             // 

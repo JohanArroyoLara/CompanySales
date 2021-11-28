@@ -69,6 +69,7 @@ namespace IU.Employees
             this.btnAccept.TabIndex = 35;
             this.btnAccept.Text = "Guardar";
             this.btnAccept.UseVisualStyleBackColor = false;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // lblLastName
             // 
@@ -89,6 +90,7 @@ namespace IU.Employees
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(171, 20);
             this.txtPhone.TabIndex = 33;
+            this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // lblPhone
             // 
@@ -149,6 +151,8 @@ namespace IU.Employees
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(171, 20);
             this.txtFirstName.TabIndex = 26;
+            this.txtFirstName.TextChanged += new System.EventHandler(this.txtFirstName_TextChanged);
+            this.txtFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFirstName_KeyPress);
             // 
             // txtID
             // 
@@ -157,6 +161,7 @@ namespace IU.Employees
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(171, 20);
             this.txtID.TabIndex = 25;
+            this.txtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress_1);
             // 
             // txtAddress
             // 

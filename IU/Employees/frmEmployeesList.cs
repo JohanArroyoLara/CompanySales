@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BL;
+using DOM;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,13 @@ namespace IU.Employees
         public frmEmployeesList()
         {
             InitializeComponent();
+        }
+
+        private void Cargar_Click(object sender, EventArgs e)
+        {
+            EmployeeManager employeeManager = new EmployeeManager();
+            List<EmployeeDOM> employees = employeeManager.employeesList();
+            grdList.DataSource = employees;
         }
     }
 }

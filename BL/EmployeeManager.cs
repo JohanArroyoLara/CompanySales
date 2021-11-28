@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class EmployeeManager
+    public class EmployeeManager
     {
 
         EmployeeDAO employeeDAO = new EmployeeDAO();

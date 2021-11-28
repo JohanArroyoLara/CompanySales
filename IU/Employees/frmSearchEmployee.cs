@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BL;
+using DOM;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,7 +24,38 @@ namespace IU.Employees
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            EmployeeManager employeeManager = new EmployeeManager();
+            EmployeeDOM employee = new EmployeeDOM();
 
+            if (regularExpressions.allTextBoxesFilled(txtID))
+            {
+                int id = int.Parse(txtID.Text);
+
+                disableTextBox();
+                btnSaveChanges.Enabled = false;
+
+                employee = employeeManager.getEmployee(id);
+
+                if (employee != null)
+                {
+                    txtFirstName.Text = employee.Name;
+                    txtAddress.Text = employee.Address;
+                    txtEmail.Text = employee.Email;
+                    txtPhone.Text = employee.Telephone.ToString();
+                    btnModify.Enabled = true;
+                }
+                else
+                {
+                    btnModify.Enabled = false;
+                    clearTextBox();
+                    MessageBox.Show("No se encontró el empleado");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Por favor, digite un código");
+            }
         }
 
         private void btnModify_Click(object sender, EventArgs e)
@@ -91,6 +124,55 @@ namespace IU.Employees
         {
 
         }
-        
+
+        private void btnModify_Click_1(object sender, EventArgs e)
+        {
+            enableTextBox();
+            txtID.Enabled = false;
+            btnSearch.Enabled = false;
+            btnSaveChanges.Enabled = true;
+        }
+
+        private void btnSaveChanges_Click(object sender, EventArgs e)
+        {
+            EmployeeManager employeeManager = new EmployeeManager();
+            EmployeeDOM client = new EmployeeDOM();
+
+            if (regularExpressions.allTextBoxesFilled(txtFirstName, txtAddress, txtEmail, txtPhone))
+            {
+                int id = int.Parse(txtID.Text);
+
+                client.Id = id;
+                client.Name = txtFirstName.Text;
+                client.Address = txtAddress.Text;
+                client.Email = txtEmail.Text;
+                client.Telephone = int.Parse(txtPhone.Text);
+
+                if (regularExpressions.validEmailFormat(client.Email) == true)
+                {
+
+                    employeeManager.updateEmployee(client);
+                    MessageBox.Show("Empleado actualizado con éxito");
+                    clearTextBox();
+                    txtID.Text = "";
+                    disableTextBox();
+                    btnModify.Enabled = false;
+                    btnSaveChanges.Enabled = false;
+                    btnSearch.Enabled = true;
+                    txtID.Enabled = true;
+
+                }
+                else
+                {
+                    MessageBox.Show("Digite un formato de correo válido\n" +
+                        "ejemplo@ejemplo.com");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Por favor, rellene todas las casillas");
+            }
+        }
     }
 }

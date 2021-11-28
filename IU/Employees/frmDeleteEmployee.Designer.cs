@@ -55,6 +55,7 @@ namespace IU.Employees
             this.txtClientID.Name = "txtClientID";
             this.txtClientID.Size = new System.Drawing.Size(174, 20);
             this.txtClientID.TabIndex = 4;
+            this.txtClientID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClientID_KeyPress);
             // 
             // label1
             // 

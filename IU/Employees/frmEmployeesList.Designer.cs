@@ -46,6 +46,7 @@ namespace IU.Employees
             this.Cargar.TabIndex = 3;
             this.Cargar.Text = "Cargar";
             this.Cargar.UseVisualStyleBackColor = false;
+            this.Cargar.Click += new System.EventHandler(this.Cargar_Click);
             // 
             // grdList
             // 
