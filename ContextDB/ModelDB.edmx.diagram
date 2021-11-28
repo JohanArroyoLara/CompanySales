@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="ComapanySalesDBModel.Billing" Width="1.5" PointX="5" PointY="0.75" />
         <AssociationConnector Association="ComapanySalesDBModel.FK__Billing__Billing__35BCFE0A" />
         <AssociationConnector Association="ComapanySalesDBModel.FK__Billing__Product__36B12243" />
+        <EntityTypeShape EntityType="ComapanySalesDBModel.Employee" Width="1.5" PointX="0.75" PointY="3.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

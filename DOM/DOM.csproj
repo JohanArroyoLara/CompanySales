@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BillingDOM.cs" />
     <Compile Include="ClientDOM.cs" />
+    <Compile Include="EmployeeDOM.cs" />
     <Compile Include="ProductDOM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
