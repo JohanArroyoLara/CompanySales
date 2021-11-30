@@ -79,7 +79,7 @@ namespace IU.Billing
                 product = productManager.getProduct(int.Parse(txtProductCode.Text));
 
                 
-                if (int.Parse(txtQuantity.Text)<=product.InvetoryQuantity)
+                if (int.Parse(txtQuantity.Text)<=product.Quantity)
                 {
                     if (clientManager.getClient(clientID) != null)
                     {
@@ -89,8 +89,8 @@ namespace IU.Billing
                         int subTotal = int.Parse(txtQuantity.Text) * int.Parse(txtPrice.Text);
 
                         BillingDOM billing = new BillingDOM(clientID,
-                            int.Parse(txtProductCode.Text), int.Parse(txtQuantity.Text),
-                            int.Parse(txtPrice.Text), subTotal);
+                            int.Parse(txtProductCode.Text),
+                         /*se ocupa cambiar a orderID*/   clientID, subTotal);
 
                         if (billingManager.addBilling(billing))
                         {
@@ -113,7 +113,7 @@ namespace IU.Billing
                 else
                 {
                     MessageBox.Show("La cantidad solicitada excede la del inventario\n" +
-                        "Unidades en el inventario: " + product.InvetoryQuantity);
+                        "Unidades en el inventario: " + product.Quantity);
                 }
 
             }

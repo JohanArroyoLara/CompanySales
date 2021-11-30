@@ -5,27 +5,37 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ComapanySalesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ComapanySalesDB.dbo.Assignments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Assignments">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Employe_ID" />
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employe_ID" Type="int" Nullable="false" />
+          <Property Name="Order_ID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Billing">
           <Key>
-            <PropertyRef Name="ClientID" />
-            <PropertyRef Name="BillingDate" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ClientID" Type="int" Nullable="false" />
-          <Property Name="ProductID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="SubTotal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="BillingDate" Type="datetime" Nullable="false" />
+          <Property Name="ClientID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Telephone" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -36,76 +46,308 @@
           <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="Telephone" Type="int" />
+          <Property Name="Job" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Term" Type="datetime" Nullable="false" />
+          <Property Name="Client_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ComapanySalesDB.dbo.Order_Details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Order_Details">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Product_ID" />
+            <PropertyRef Name="Order_ID" />
+            <PropertyRef Name="Quantity" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_ID" Type="int" Nullable="false" />
+          <Property Name="Order_ID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Specifications" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" />
           <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Assignments_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assignments">
+              <PropertyRef Name="Employe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assignments_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assignments">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Billing_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Billing" Type="Self.Billing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Billing">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Billing_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Billing" Type="Self.Billing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Billing">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Client_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Details_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Order_Details" Type="Self.Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_Details">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Details_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Order_Details" Type="Self.Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_Details">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ComapanySalesDBModelStoreContainer">
           <EntitySet Name="Billing" EntityType="Self.Billing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Assignments" EntityType="Self.Assignments" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Assignments].[ID] AS [ID], 
+    [Assignments].[Employe_ID] AS [Employe_ID], 
+    [Assignments].[Order_ID] AS [Order_ID]
+    FROM [dbo].[Assignments] AS [Assignments]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Order_Details" EntityType="Self.Order_Details" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Order_Details].[ID] AS [ID], 
+    [Order_Details].[Product_ID] AS [Product_ID], 
+    [Order_Details].[Order_ID] AS [Order_ID], 
+    [Order_Details].[Quantity] AS [Quantity], 
+    [Order_Details].[Specifications] AS [Specifications]
+    FROM [dbo].[Order_Details] AS [Order_Details]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Assignments_Employee" Association="Self.FK_Assignments_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Assignments" EntitySet="Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assignments_Order" Association="Self.FK_Assignments_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Assignments" EntitySet="Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Billing_Client" Association="Self.FK_Billing_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Billing" EntitySet="Billing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Billing_Order" Association="Self.FK_Billing_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Billing" EntitySet="Billing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Client" Association="Self.FK_Order_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Details_Order" Association="Self.FK_Order_Details_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Order_Details" EntitySet="Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Details_Product" Association="Self.FK_Order_Details_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Order_Details" EntitySet="Order_Details" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ComapanySalesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ComapanySalesDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Billing" EntityType="ComapanySalesDBModel.Billing" />
+          <EntitySet Name="Client" EntityType="ComapanySalesDBModel.Client" />
+          <EntitySet Name="Employee" EntityType="ComapanySalesDBModel.Employee" />
+          <EntitySet Name="Order" EntityType="ComapanySalesDBModel.Order" />
+          <EntitySet Name="Product" EntityType="ComapanySalesDBModel.Product" />
+          <EntitySet Name="Assignments" EntityType="ComapanySalesDBModel.Assignments" />
+          <EntitySet Name="Order_Details" EntityType="ComapanySalesDBModel.Order_Details" />
+          <AssociationSet Name="FK_Billing_Client" Association="ComapanySalesDBModel.FK_Billing_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Billing" EntitySet="Billing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Billing_Order" Association="ComapanySalesDBModel.FK_Billing_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Billing" EntitySet="Billing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Client" Association="ComapanySalesDBModel.FK_Order_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assignments_Employee" Association="ComapanySalesDBModel.FK_Assignments_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Assignments" EntitySet="Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assignments_Order" Association="ComapanySalesDBModel.FK_Assignments_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Assignments" EntitySet="Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Details_Order" Association="ComapanySalesDBModel.FK_Order_Details_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Order_Details" EntitySet="Order_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Details_Product" Association="ComapanySalesDBModel.FK_Order_Details_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Order_Details" EntitySet="Order_Details" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Billing">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="SubTotal" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="BillingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="ComapanySalesDBModel.FK_Billing_Client" FromRole="Billing" ToRole="Client" />
+          <NavigationProperty Name="Order" Relationship="ComapanySalesDBModel.FK_Billing_Order" FromRole="Billing" ToRole="Order" />
+        </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Telephone" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Billing" Relationship="ComapanySalesDBModel.FK__Billing__Billing__35BCFE0A" FromRole="Client" ToRole="Billing" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Billing" Relationship="ComapanySalesDBModel.FK_Billing_Client" FromRole="Client" ToRole="Billing" />
+          <NavigationProperty Name="Order" Relationship="ComapanySalesDBModel.FK_Order_Client" FromRole="Client" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="Int32" />
+          <Property Name="Job" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Assignments" Relationship="ComapanySalesDBModel.FK_Assignments_Employee" FromRole="Employee" ToRole="Assignments" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Term" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Client_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Billing" Relationship="ComapanySalesDBModel.FK_Billing_Order" FromRole="Order" ToRole="Billing" />
+          <NavigationProperty Name="Client" Relationship="ComapanySalesDBModel.FK_Order_Client" FromRole="Order" ToRole="Client" />
+          <NavigationProperty Name="Assignments" Relationship="ComapanySalesDBModel.FK_Assignments_Order" FromRole="Order" ToRole="Assignments" />
+          <NavigationProperty Name="Order_Details" Relationship="ComapanySalesDBModel.FK_Order_Details_Order" FromRole="Order" ToRole="Order_Details" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Billing" Relationship="ComapanySalesDBModel.FK__Billing__Product__36B12243" FromRole="Product" ToRole="Billing" />
+          <NavigationProperty Name="Order_Details" Relationship="ComapanySalesDBModel.FK_Order_Details_Product" FromRole="Product" ToRole="Order_Details" />
         </EntityType>
-        <EntityContainer Name="ComapanySalesDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Client" EntityType="Self.Client" />
-          <EntitySet Name="Product" EntityType="Self.Product" />
-          <EntitySet Name="Billing" EntityType="ComapanySalesDBModel.Billing" />
-          <AssociationSet Name="FK__Billing__Billing__35BCFE0A" Association="ComapanySalesDBModel.FK__Billing__Billing__35BCFE0A">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Billing" EntitySet="Billing" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Billing__Product__36B12243" Association="ComapanySalesDBModel.FK__Billing__Product__36B12243">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Billing" EntitySet="Billing" />
-          </AssociationSet>
-          <EntitySet Name="Employee" EntityType="ComapanySalesDBModel.Employee" />
-          </EntityContainer>
-        <EntityType Name="Billing">
+        <EntityType Name="Assignments">
           <Key>
-            <PropertyRef Name="ClientID" />
-            <PropertyRef Name="BillingDate" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Employe_ID" />
+            <PropertyRef Name="Order_ID" />
           </Key>
-          <Property Name="ClientID" Type="Int32" Nullable="false" />
-          <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="SubTotal" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="BillingDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Client" Relationship="ComapanySalesDBModel.FK__Billing__Billing__35BCFE0A" FromRole="Billing" ToRole="Client" />
-          <NavigationProperty Name="Product" Relationship="ComapanySalesDBModel.FK__Billing__Product__36B12243" FromRole="Billing" ToRole="Product" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employe_ID" Type="Int32" Nullable="false" />
+          <Property Name="Order_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="ComapanySalesDBModel.FK_Assignments_Employee" FromRole="Assignments" ToRole="Employee" />
+          <NavigationProperty Name="Order" Relationship="ComapanySalesDBModel.FK_Assignments_Order" FromRole="Assignments" ToRole="Order" />
         </EntityType>
-        <Association Name="FK__Billing__Billing__35BCFE0A">
+        <EntityType Name="Order_Details">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Product_ID" />
+            <PropertyRef Name="Order_ID" />
+            <PropertyRef Name="Quantity" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Order_ID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Specifications" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order" Relationship="ComapanySalesDBModel.FK_Order_Details_Order" FromRole="Order_Details" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="ComapanySalesDBModel.FK_Order_Details_Product" FromRole="Order_Details" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Billing_Client">
           <End Type="ComapanySalesDBModel.Client" Role="Client" Multiplicity="1" />
           <End Type="ComapanySalesDBModel.Billing" Role="Billing" Multiplicity="*" />
           <ReferentialConstraint>
@@ -117,74 +359,156 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Billing__Product__36B12243">
-          <End Type="ComapanySalesDBModel.Product" Role="Product" Multiplicity="1" />
+        <Association Name="FK_Billing_Order">
+          <End Type="ComapanySalesDBModel.Order" Role="Order" Multiplicity="1" />
           <End Type="ComapanySalesDBModel.Billing" Role="Billing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Billing">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Client">
+          <End Type="ComapanySalesDBModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="ComapanySalesDBModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Client_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assignments_Employee">
+          <End Type="ComapanySalesDBModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="ComapanySalesDBModel.Assignments" Role="Assignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assignments">
+              <PropertyRef Name="Employe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assignments_Order">
+          <End Type="ComapanySalesDBModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="ComapanySalesDBModel.Assignments" Role="Assignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assignments">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Details_Order">
+          <End Type="ComapanySalesDBModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="ComapanySalesDBModel.Order_Details" Role="Order_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order_Details">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Details_Product">
+          <End Type="ComapanySalesDBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ComapanySalesDBModel.Order_Details" Role="Order_Details" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Billing">
-              <PropertyRef Name="ProductID" />
+            <Dependent Role="Order_Details">
+              <PropertyRef Name="Product_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Telephone" Type="Int32" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ComapanySalesDBModelStoreContainer" CdmEntityContainer="ComapanySalesDBEntities">
-          <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="ComapanySalesDBModel.Client">
-              <MappingFragment StoreEntitySet="Client">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="ComapanySalesDBModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Billing">
             <EntityTypeMapping TypeName="ComapanySalesDBModel.Billing">
               <MappingFragment StoreEntitySet="Billing">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="BillingDate" ColumnName="BillingDate" />
                 <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="ComapanySalesDBModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employee">
             <EntityTypeMapping TypeName="ComapanySalesDBModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Job" ColumnName="Job" />
                 <ScalarProperty Name="Telephone" ColumnName="Telephone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="ComapanySalesDBModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="ComapanySalesDBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assignments">
+            <EntityTypeMapping TypeName="ComapanySalesDBModel.Assignments">
+              <MappingFragment StoreEntitySet="Assignments">
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Employe_ID" ColumnName="Employe_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_Details">
+            <EntityTypeMapping TypeName="ComapanySalesDBModel.Order_Details">
+              <MappingFragment StoreEntitySet="Order_Details">
+                <ScalarProperty Name="Specifications" ColumnName="Specifications" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

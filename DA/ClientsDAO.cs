@@ -20,9 +20,9 @@ namespace DA
 
             newCliente.ID = client.Id;
             newCliente.FirstName = client.FirstName;
-            newCliente.LastName = client.LastName;
             newCliente.Email = client.Email;
             newCliente.Telephone = client.Telephone;
+            newCliente.Address = client.Address;
 
             DBContext.Client.Add(newCliente);
 
@@ -51,9 +51,9 @@ namespace DA
             {
                 client.Id = clienteToFind.ID;
                 client.FirstName = clienteToFind.FirstName;
-                client.LastName = clienteToFind.LastName;
                 client.Email = clienteToFind.Email;
                 client.Telephone = clienteToFind.Telephone;
+                client.Address = clienteToFind.Address;
 
                 return client;
             }
@@ -71,9 +71,9 @@ namespace DA
 
             newClient.ID = client.Id;
             newClient.FirstName = client.FirstName;
-            newClient.LastName = client.LastName;
             newClient.Email = client.Email;
             newClient.Telephone = client.Telephone;
+            newClient.Address = client.Address;
 
             DBContext.Client.Attach(newClient);
             DBContext.Entry(newClient).State = EntityState.Modified;
@@ -106,7 +106,7 @@ namespace DA
 
             foreach (Client c in list)
             {
-                returnList.Add(new ClientDOM(c.ID,c.FirstName,c.LastName,c.Email,c.Telephone));
+                returnList.Add(new ClientDOM(c.ID,c.FirstName,c.Address,c.Email,c.Telephone));
             }
                 
             return returnList;

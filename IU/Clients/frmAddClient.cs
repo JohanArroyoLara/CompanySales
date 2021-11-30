@@ -38,11 +38,11 @@ namespace IU
         {
             ClientManager clientManager = new ClientManager();
 
-            if (regularExpressions.allTextBoxesFilled(txtID, txtFirstName, txtLastName,
+            if (regularExpressions.allTextBoxesFilled(txtID, txtFirstName, txtAddress,
                                                         txtEmail, txtPhone))
             {
 
-                ClientDOM client = new ClientDOM(int.Parse(txtID.Text), txtFirstName.Text, txtLastName.Text,
+                ClientDOM client = new ClientDOM(int.Parse(txtID.Text), txtFirstName.Text, txtAddress.Text,
                                 txtEmail.Text, int.Parse(txtPhone.Text));
 
                 if (regularExpressions.validEmailFormat(client.Email) == true)

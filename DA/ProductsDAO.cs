@@ -20,7 +20,8 @@ namespace DA
             newProduct.ID = product.Id;
             newProduct.Description = product.Description;
             newProduct.Price = product.SalesPrice;
-            newProduct.Quantity = product.InvetoryQuantity;
+            newProduct.Name = product.Name;
+            newProduct.Quantity = product.Quantity;
             DBContext.Product.Add(newProduct);
 
             try
@@ -49,8 +50,8 @@ namespace DA
                 product.Id = findProduct.ID;
                 product.Description = findProduct.Description;
                 product.SalesPrice = findProduct.Price;
-                product.InvetoryQuantity = findProduct.Quantity;
-
+                product.Name = findProduct.Name;
+                product.Quantity = findProduct.Quantity;
                 return product;
             }
             else
@@ -68,7 +69,8 @@ namespace DA
             newProduct.ID = product.Id;
             newProduct.Description = product.Description;
             newProduct.Price = product.SalesPrice;
-            newProduct.Quantity = product.InvetoryQuantity;
+            newProduct.Name = product.Name;
+            newProduct.Quantity = product.Quantity;
 
             DBContext.Product.Attach(newProduct);
             DBContext.Entry(newProduct).State = EntityState.Modified;
@@ -101,7 +103,7 @@ namespace DA
             foreach (Product product in list)
             {
                 returnList.Add(new ProductDOM(product.ID, product.Description,
-                                              product.Price, product.Quantity));
+                                              product.Price, product.Name, product.Quantity));
             }
 
             return returnList;

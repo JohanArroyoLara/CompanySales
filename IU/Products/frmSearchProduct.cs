@@ -56,7 +56,7 @@ namespace IU
                 if (product != null)
                 {
                     txtDescription.Text = product.Description;
-                    txtInventory.Text = product.InvetoryQuantity.ToString();
+                    txtInventory.Text = product.Quantity.ToString();
                     txtPrice.Text = product.SalesPrice.ToString();
 
                     btnModify.Enabled = true;
@@ -104,7 +104,8 @@ namespace IU
             product.Id = id;
             product.Description = txtDescription.Text;
             product.SalesPrice = int.Parse(txtPrice.Text);
-            product.InvetoryQuantity = int.Parse(txtInventory.Text);
+            product.Name = txtName.Text;
+            product.Quantity = int.Parse(txtInventory.Text);
             
             productManager.updateProduct(product);
             MessageBox.Show("Producto actualizado con éxito");

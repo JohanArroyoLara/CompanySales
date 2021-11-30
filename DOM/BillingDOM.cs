@@ -9,10 +9,9 @@ namespace DOM
     public class BillingDOM
     {
 
+        private int id;
+        private int orderID;
         private int clientID;
-        private int productID;
-        private int quantity;
-        private Decimal unitPrice;
         private Decimal subTotal;
         private DateTime billingDate;
 
@@ -20,19 +19,18 @@ namespace DOM
         {
         }
 
-        public BillingDOM(int clientID, int productID, int quantity, Decimal unitPrice, Decimal subTotal)
+
+        public BillingDOM(int id, int orderID, int clientID, Decimal subTotal)
         {
+            this.id = id;
+            this.orderID = orderID;
             this.clientID = clientID;
-            this.productID = productID;
-            this.quantity = quantity;
-            this.unitPrice = unitPrice;
             this.subTotal = subTotal;
         }
 
+        public int ID { get => id; set => id = value; }
         public int ClientID { get => clientID; set => clientID = value; }
-        public int ProductID { get => productID; set => productID = value; }
-        public int Quantity { get => quantity; set => quantity = value; }
-        public Decimal UnitPrice { get => unitPrice; set => unitPrice = value; }
+        public int OrderID { get => orderID; set => orderID = value; }
         public Decimal SubTotal { get => subTotal; set => subTotal = value; }
         public DateTime BillingDate { get => billingDate; set => billingDate = value; }
 

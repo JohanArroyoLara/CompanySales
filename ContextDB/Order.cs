@@ -12,22 +12,28 @@ namespace ContextDB
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employee()
+        public Order()
         {
+            this.Billing = new HashSet<Billing>();
             this.Assignments = new HashSet<Assignments>();
+            this.Order_Details = new HashSet<Order_Details>();
         }
     
         public int ID { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public Nullable<int> Telephone { get; set; }
-        public string Job { get; set; }
+        public System.DateTime Date { get; set; }
+        public string State { get; set; }
+        public System.DateTime Term { get; set; }
+        public int Client_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Billing> Billing { get; set; }
+        public virtual Client Client { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Assignments> Assignments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order_Details> Order_Details { get; set; }
     }
 }

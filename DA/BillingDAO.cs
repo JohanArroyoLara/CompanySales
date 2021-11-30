@@ -19,9 +19,7 @@ namespace DA
             Billing newBiling = new Billing();
 
             newBiling.ClientID = billing.ClientID;
-            newBiling.ProductID = billing.ProductID;
-            newBiling.Quantity = billing.Quantity;
-            newBiling.UnitPrice = billing.UnitPrice;
+            newBiling.OrderID = billing.OrderID;
             newBiling.SubTotal = billing.SubTotal;
             newBiling.BillingDate
                 = DBContext.Database.SqlQuery<DateTime>("SELECT SYSDATETIME()").SingleOrDefault();
@@ -57,8 +55,7 @@ namespace DA
 
                     if ((b.BillingDate.Date >= date1.Date) && (b.BillingDate.Date<=date2.Date))
                     {
-                        BillingDOM billing = new BillingDOM(b.ClientID, b.ProductID,
-                        b.Quantity, b.UnitPrice, b.SubTotal);
+                        BillingDOM billing = new BillingDOM(b.ID, b.ClientID, b.OrderID, b.SubTotal);
                         billing.BillingDate = b.BillingDate;
                         returnList.Add(billing);
                     }

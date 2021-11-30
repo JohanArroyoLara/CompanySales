@@ -24,6 +24,7 @@ namespace DA
             newEmployee.Address = employee.Address;
             newEmployee.Email = employee.Email;
             newEmployee.Telephone = employee.Telephone;
+            newEmployee.Job = employee.Job;
 
             DBContext.Employee.Add(newEmployee);
 
@@ -55,6 +56,7 @@ namespace DA
                 employee.Address = employeeToFind.Address;
                 employee.Email = employeeToFind.Email;
                 employee.Telephone = (int) employeeToFind.Telephone;
+                employee.Job = employeeToFind.Job;
 
                 return employee;
             }
@@ -75,6 +77,7 @@ namespace DA
             newEmployee.Address = employee.Address;
             newEmployee.Email = employee.Email;
             newEmployee.Telephone = employee.Telephone;
+            newEmployee.Job = employee.Job;
 
             DBContext.Employee.Attach(newEmployee);
             DBContext.Entry(newEmployee).State = EntityState.Modified;
@@ -107,7 +110,7 @@ namespace DA
 
             foreach (Employee e in list)
             {
-                returnList.Add(new EmployeeDOM(e.ID, e.Name, e.Address, e.Email, (int) e.Telephone));
+                returnList.Add(new EmployeeDOM(e.ID, e.Name, e.Address, e.Email, (int) e.Telephone, e.Job));
             }
 
             return returnList;

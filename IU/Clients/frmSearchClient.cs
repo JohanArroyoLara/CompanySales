@@ -40,7 +40,7 @@ namespace IU
                 if (client != null)
                 {
                     txtFirstName.Text = client.FirstName;
-                    txtLastName.Text = client.LastName;
+                    txtAddress.Text = client.Address;
                     txtEmail.Text = client.Email;
                     txtPhone.Text = client.Telephone.ToString();
                     btnModify.Enabled = true;
@@ -65,13 +65,13 @@ namespace IU
             ClientManager clientManager = new ClientManager();
             ClientDOM client = new ClientDOM();
 
-            if (regularExpressions.allTextBoxesFilled(txtFirstName, txtLastName, txtEmail, txtPhone))
+            if (regularExpressions.allTextBoxesFilled(txtFirstName, txtAddress, txtEmail, txtPhone))
             {
                 int id = int.Parse(txtID.Text);
 
                 client.Id = id;
                 client.FirstName = txtFirstName.Text;
-                client.LastName = txtLastName.Text;
+                client.Address = txtAddress.Text;
                 client.Email = txtEmail.Text;
                 client.Telephone = int.Parse(txtPhone.Text);
 
@@ -114,7 +114,7 @@ namespace IU
         private void enableTextBox()
         {
             txtFirstName.Enabled = true;
-            txtLastName.Enabled = true;
+            txtAddress.Enabled = true;
             txtEmail.Enabled = true;
             txtPhone.Enabled = true;
         }
@@ -122,7 +122,7 @@ namespace IU
         private void disableTextBox()
         {
             txtFirstName.Enabled = false;
-            txtLastName.Enabled = false;
+            txtAddress.Enabled = false;
             txtEmail.Enabled = false;
             txtPhone.Enabled = false;
         }
@@ -130,7 +130,7 @@ namespace IU
         private void clearTextBox()
         {
             txtFirstName.Text = "";
-            txtLastName.Text = "";
+            txtAddress.Text = "";
             txtEmail.Text = "";
             txtPhone.Text = "";
         }

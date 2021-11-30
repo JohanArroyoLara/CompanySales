@@ -18,15 +18,18 @@ namespace ContextDB
         public Client()
         {
             this.Billing = new HashSet<Billing>();
+            this.Order = new HashSet<Order>();
         }
     
         public int ID { get; set; }
         public string FirstName { get; set; }
-        public string LastName { get; set; }
         public string Email { get; set; }
         public int Telephone { get; set; }
+        public string Address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Billing> Billing { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Order { get; set; }
     }
 }

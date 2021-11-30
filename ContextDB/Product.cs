@@ -17,15 +17,16 @@ namespace ContextDB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Billing = new HashSet<Billing>();
+            this.Order_Details = new HashSet<Order_Details>();
         }
     
         public int ID { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public string Name { get; set; }
         public int Quantity { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Billing> Billing { get; set; }
+        public virtual ICollection<Order_Details> Order_Details { get; set; }
     }
 }

@@ -55,6 +55,7 @@
     <Compile Include="BillingDAO.cs" />
     <Compile Include="ClientsDAO.cs" />
     <Compile Include="EmployeeDAO.cs" />
+    <Compile Include="OrderDAO.cs" />
     <Compile Include="ProductsDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -12,15 +12,13 @@ namespace ContextDB
     using System;
     using System.Collections.Generic;
     
-    public partial class Billing
+    public partial class Assignments
     {
         public int ID { get; set; }
-        public int OrderID { get; set; }
-        public decimal SubTotal { get; set; }
-        public System.DateTime BillingDate { get; set; }
-        public int ClientID { get; set; }
+        public int Employe_ID { get; set; }
+        public int Order_ID { get; set; }
     
-        public virtual Client Client { get; set; }
+        public virtual Employee Employee { get; set; }
         public virtual Order Order { get; set; }
     }
 }

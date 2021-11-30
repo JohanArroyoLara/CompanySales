@@ -37,7 +37,7 @@ namespace IU
             this.lblName = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtID = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -52,19 +52,21 @@ namespace IU
             this.lblLastName.AutoSize = true;
             this.lblLastName.Font = new System.Drawing.Font("Rockwell", 25F);
             this.lblLastName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.lblLastName.Location = new System.Drawing.Point(33, 197);
+            this.lblLastName.Location = new System.Drawing.Point(44, 242);
+            this.lblLastName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLastName.Name = "lblLastName";
-            this.lblLastName.Size = new System.Drawing.Size(161, 38);
+            this.lblLastName.Size = new System.Drawing.Size(221, 47);
             this.lblLastName.TabIndex = 32;
-            this.lblLastName.Text = "Apellido:";
+            this.lblLastName.Text = "Dirección:";
             // 
             // txtPhone
             // 
             this.txtPhone.Enabled = false;
-            this.txtPhone.Location = new System.Drawing.Point(200, 338);
+            this.txtPhone.Location = new System.Drawing.Point(267, 416);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPhone.MaxLength = 8;
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(155, 20);
+            this.txtPhone.Size = new System.Drawing.Size(205, 22);
             this.txtPhone.TabIndex = 31;
             this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
@@ -73,9 +75,10 @@ namespace IU
             this.lblPhone.AutoSize = true;
             this.lblPhone.Font = new System.Drawing.Font("Rockwell", 25F);
             this.lblPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.lblPhone.Location = new System.Drawing.Point(33, 320);
+            this.lblPhone.Location = new System.Drawing.Point(44, 394);
+            this.lblPhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(161, 38);
+            this.lblPhone.Size = new System.Drawing.Size(200, 47);
             this.lblPhone.TabIndex = 30;
             this.lblPhone.Text = "Teléfono:";
             // 
@@ -84,9 +87,10 @@ namespace IU
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Rockwell", 25F);
             this.lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.lblEmail.Location = new System.Drawing.Point(33, 255);
+            this.lblEmail.Location = new System.Drawing.Point(44, 314);
+            this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(115, 38);
+            this.lblEmail.Size = new System.Drawing.Size(140, 47);
             this.lblEmail.TabIndex = 29;
             this.lblEmail.Text = "Email:";
             // 
@@ -95,9 +99,10 @@ namespace IU
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Rockwell", 25F);
             this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.lblName.Location = new System.Drawing.Point(33, 134);
+            this.lblName.Location = new System.Drawing.Point(44, 165);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(154, 38);
+            this.lblName.Size = new System.Drawing.Size(191, 47);
             this.lblName.TabIndex = 28;
             this.lblName.Text = "Nombre:";
             // 
@@ -106,48 +111,53 @@ namespace IU
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Rockwell", 25F);
             this.lblID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.lblID.Location = new System.Drawing.Point(33, 40);
+            this.lblID.Location = new System.Drawing.Point(44, 49);
+            this.lblID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(140, 38);
+            this.lblID.Size = new System.Drawing.Size(172, 47);
             this.lblID.TabIndex = 27;
             this.lblID.Text = "Cédula:";
             // 
             // txtEmail
             // 
             this.txtEmail.Enabled = false;
-            this.txtEmail.Location = new System.Drawing.Point(200, 271);
+            this.txtEmail.Location = new System.Drawing.Point(267, 334);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(155, 20);
+            this.txtEmail.Size = new System.Drawing.Size(205, 22);
             this.txtEmail.TabIndex = 26;
             // 
-            // txtLastName
+            // txtAddress
             // 
-            this.txtLastName.Enabled = false;
-            this.txtLastName.Location = new System.Drawing.Point(200, 213);
-            this.txtLastName.MaxLength = 50;
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(155, 20);
-            this.txtLastName.TabIndex = 25;
-            this.txtLastName.TextChanged += new System.EventHandler(this.txtLastName_TextChanged);
-            this.txtLastName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLastName_KeyPress);
+            this.txtAddress.Enabled = false;
+            this.txtAddress.Location = new System.Drawing.Point(267, 262);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAddress.MaxLength = 50;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(205, 22);
+            this.txtAddress.TabIndex = 25;
+            this.txtAddress.TextChanged += new System.EventHandler(this.txtLastName_TextChanged);
+            this.txtAddress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLastName_KeyPress);
             // 
             // txtFirstName
             // 
             this.txtFirstName.Enabled = false;
-            this.txtFirstName.Location = new System.Drawing.Point(200, 150);
+            this.txtFirstName.Location = new System.Drawing.Point(267, 185);
+            this.txtFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtFirstName.MaxLength = 50;
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(155, 20);
+            this.txtFirstName.Size = new System.Drawing.Size(205, 22);
             this.txtFirstName.TabIndex = 24;
             this.txtFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFirstName_KeyPress);
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(200, 40);
+            this.txtID.Location = new System.Drawing.Point(267, 49);
+            this.txtID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtID.MaxLength = 9;
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(155, 20);
+            this.txtID.Size = new System.Drawing.Size(205, 22);
             this.txtID.TabIndex = 23;
             this.txtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress);
             // 
@@ -156,9 +166,10 @@ namespace IU
             this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
             this.btnSearch.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(200, 77);
+            this.btnSearch.Location = new System.Drawing.Point(267, 95);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(155, 39);
+            this.btnSearch.Size = new System.Drawing.Size(207, 48);
             this.btnSearch.TabIndex = 33;
             this.btnSearch.Text = "Consultar";
             this.btnSearch.UseVisualStyleBackColor = false;
@@ -170,9 +181,10 @@ namespace IU
             this.btnModify.Enabled = false;
             this.btnModify.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModify.ForeColor = System.Drawing.Color.White;
-            this.btnModify.Location = new System.Drawing.Point(200, 388);
+            this.btnModify.Location = new System.Drawing.Point(267, 478);
+            this.btnModify.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(155, 39);
+            this.btnModify.Size = new System.Drawing.Size(207, 48);
             this.btnModify.TabIndex = 34;
             this.btnModify.Text = "Modificar";
             this.btnModify.UseVisualStyleBackColor = false;
@@ -184,9 +196,10 @@ namespace IU
             this.btnSaveChanges.Enabled = false;
             this.btnSaveChanges.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveChanges.ForeColor = System.Drawing.Color.White;
-            this.btnSaveChanges.Location = new System.Drawing.Point(450, 388);
+            this.btnSaveChanges.Location = new System.Drawing.Point(600, 478);
+            this.btnSaveChanges.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSaveChanges.Name = "btnSaveChanges";
-            this.btnSaveChanges.Size = new System.Drawing.Size(155, 39);
+            this.btnSaveChanges.Size = new System.Drawing.Size(207, 48);
             this.btnSaveChanges.TabIndex = 35;
             this.btnSaveChanges.Text = "Actualizar";
             this.btnSaveChanges.UseVisualStyleBackColor = false;
@@ -196,19 +209,20 @@ namespace IU
             // 
             this.pictureBox1.BackgroundImage = global::IU.Properties.Resources.user;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(411, 49);
+            this.pictureBox1.Location = new System.Drawing.Point(548, 60);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(239, 244);
+            this.pictureBox1.Size = new System.Drawing.Size(319, 300);
             this.pictureBox1.TabIndex = 36;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.UseWaitCursor = true;
             // 
             // frmSearchClient
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(241)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(688, 442);
+            this.ClientSize = new System.Drawing.Size(917, 544);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSaveChanges);
             this.Controls.Add(this.btnModify);
@@ -220,10 +234,11 @@ namespace IU
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.txtLastName);
+            this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.txtID);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmSearchClient";
             this.Text = "Editar cliente";
             this.Load += new System.EventHandler(this.frmSearchClient_Load);
@@ -242,7 +257,7 @@ namespace IU
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.TextBox txtLastName;
+        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Button btnSearch;

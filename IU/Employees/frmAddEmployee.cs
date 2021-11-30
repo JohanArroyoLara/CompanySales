@@ -14,12 +14,14 @@ namespace IU.Employees
 {
     public partial class frmAddEmployee : Form
     {
+        private string[] jobs = new[] { "Tapicero", "Armador","Chofer"};
 
         RegularExpressions regularExpressions = new RegularExpressions();
 
         public frmAddEmployee()
         {
             InitializeComponent();
+            cbJob.DataSource = jobs;
         }
 
         private void lblLastName_Click(object sender, EventArgs e)
@@ -37,7 +39,7 @@ namespace IU.Employees
             {
 
                 EmployeeDOM employee = new EmployeeDOM(int.Parse(txtID.Text), txtFirstName.Text, txtAddress.Text,
-                                txtEmail.Text, int.Parse(txtPhone.Text));
+                                txtEmail.Text, int.Parse(txtPhone.Text),cbJob.SelectedItem.ToString());
 
                 if (regularExpressions.validEmailFormat(employee.Email) == true)
                 {
