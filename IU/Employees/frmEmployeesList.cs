@@ -25,5 +25,10 @@ namespace IU.Employees
             List<EmployeeDOM> employees = employeeManager.employeesList();
             grdList.DataSource = employees;
         }
+
+        private void grdList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

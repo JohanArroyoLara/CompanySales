@@ -26,14 +26,14 @@ namespace IU
         {
             ProductManager productManager = new ProductManager();
 
-            if (regularExpressions.allTextBoxesFilled(txtDescription, txtPrice,  txtQuantity))
+            if (regularExpressions.allTextBoxesFilled(txtDescription, txtPrice))
             {
 
                 ProductDOM product = new ProductDOM(int.Parse(txtCode.Text),
                                                 txtDescription.Text,
                                                 int.Parse(txtPrice.Text),
                                                 txtName.Text,
-                                                int.Parse(txtQuantity.Text));
+                                                1);
 
                 if (productManager.getProduct(product.Id) == null)
                 {

@@ -1,75 +1,73 @@
 ﻿using ContextDB;
-using System;
 using DOM;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Linq;
 
 namespace DA
 {
-    class OrderDAO
+   public class OrderDAO
     {
-      
-            ComapanySalesDBEntities DBContext = new ComapanySalesDBEntities();
 
-            public Boolean addOrder(OrderDOM order)
-            {
+        ComapanySalesDBEntities DBContext = new ComapanySalesDBEntities();
 
-                Order newOrder = new Order();
+        public Boolean addOrder(OrderDOM order)
+        {
+
+            Order newOrder = new Order();
 
             newOrder.ID = order.Id;
             newOrder.Client_ID = order.Client_ID;
-            newOrder.Date = order.Date;
+            newOrder.Date = order.Date.Date;
             newOrder.State = order.State;
-            newOrder.Term = order.Term;
+            newOrder.Term = order.Term.Date;
 
 
-                DBContext.Order.Add(newOrder);
+            DBContext.Order.Add(newOrder);
 
-                try
+            try
+            {
+                if (DBContext.SaveChanges() == 1)
                 {
-                    if (DBContext.SaveChanges() == 1)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
-                catch (Exception)
-                {
-
-                    return false;
-                }
+            }
+            catch (Exception)
+            {
 
                 return false;
             }
 
-            public OrderDOM getOrder(int id)
-            {
-                Order orderToFind = DBContext.Order.Find(id);
-                OrderDOM order = new OrderDOM();
+            return false;
+        }
 
-                if (orderToFind != null)
-                {
+        public OrderDOM getOrder(int id)
+        {
+            Order orderToFind = DBContext.Order.Find(id);
+            OrderDOM order = new OrderDOM();
+
+            if (orderToFind != null)
+            {
                 order.Id = orderToFind.ID;
                 order.Client_ID = orderToFind.Client_ID;
                 order.State = orderToFind.State;
                 order.Date = orderToFind.Date;
                 order.Term = orderToFind.Term;
 
-                    return order;
-                }
-                else
-                {
-                    return null;
-                }
-
+                return order;
+            }
+            else
+            {
+                return null;
             }
 
-            public void updateEmployee(OrderDOM employee)
-            {
+        }
 
-                Order newOrder = new Order();
+        public void updateOrder(OrderDOM employee)
+        {
+
+            Order newOrder = new Order();
 
             newOrder.ID = employee.Id;
             newOrder.Client_ID = employee.Client_ID;
@@ -77,44 +75,78 @@ namespace DA
             newOrder.State = employee.State;
             newOrder.Term = employee.Term;
 
-                DBContext.Order.Attach(newOrder);
-                DBContext.Entry(newOrder).State = EntityState.Modified;
-                DBContext.SaveChanges();
-
-            }
-
-            public Boolean removeOrder(int id)
-            {
-                try
-                {
-                   Order newOrder = DBContext.Order.Find(id);
-                    DBContext.Entry(newOrder).State = EntityState.Deleted;
-                    DBContext.SaveChanges();
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-
-            }
-
-            public List<OrderDOM> ordersList()
-            {
-
-                List<Order> list = new List<Order>();
-                List<OrderDOM> returnList = new List<OrderDOM>();
-                list = DBContext.Order.ToList();
-
-                foreach (Order e in list)
-                {
-                    returnList.Add(new OrderDOM(e.ID, e.Client_ID,e.State, e.Date, e.Term));
-                }
-
-                return returnList;
-            }
-
+            DBContext.Order.Attach(newOrder);
+            DBContext.Entry(newOrder).State = EntityState.Modified;
+            DBContext.SaveChanges();
 
         }
-    
+
+        public Boolean removeOrder(int id)
+        {
+            try
+            {
+                Order newOrder = DBContext.Order.Find(id);
+                DBContext.Entry(newOrder).State = EntityState.Deleted;
+                DBContext.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
+        public List<OrderDOM> ordersList()
+        {
+
+            List<Order> list = new List<Order>();
+            List<OrderDOM> returnList = new List<OrderDOM>();
+            list = DBContext.Order.ToList();
+
+            foreach (Order e in list)
+            {
+                returnList.Add(new OrderDOM(e.ID, e.Client_ID, e.State, e.Date, e.Term));
+            }
+
+            return returnList;
+        }
+
+        public Boolean addOrderDetails(OrderDetailsDom orderD)
+        {
+
+            Order_Details newOrder = new Order_Details();
+           
+            newOrder.ID = orderD.ID1;
+            newOrder.Product_ID = orderD.Product_ID1;
+            newOrder.Order_ID = orderD.Order_ID1;
+            newOrder.Quantity = orderD.Quantity1;
+            newOrder.Specifications = orderD.Specifications1;
+
+
+            DBContext.Order_Details.Add(newOrder);
+
+            try
+            {
+                if (DBContext.SaveChanges() == 1)
+                {
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+            return false;
+        }
+
+
+
+
+
+
+    }
+
 }

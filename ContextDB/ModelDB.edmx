@@ -5,13 +5,9 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ComapanySalesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ComapanySalesDB.dbo.Assignments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Assignments">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="Employe_ID" />
-            <PropertyRef Name="Order_ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Employe_ID" Type="int" Nullable="false" />
@@ -58,14 +54,9 @@ warning 6002: The table/view 'ComapanySalesDB.dbo.Assignments' does not have a p
           <Property Name="Term" Type="datetime" Nullable="false" />
           <Property Name="Client_ID" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ComapanySalesDB.dbo.Order_Details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Order_Details">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="Product_ID" />
-            <PropertyRef Name="Order_ID" />
-            <PropertyRef Name="Quantity" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Product_ID" Type="int" Nullable="false" />
@@ -168,27 +159,13 @@ warning 6002: The table/view 'ComapanySalesDB.dbo.Order_Details' does not have a
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ComapanySalesDBModelStoreContainer">
+          <EntitySet Name="Assignments" EntityType="Self.Assignments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Billing" EntityType="Self.Billing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_Details" EntityType="Self.Order_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Assignments" EntityType="Self.Assignments" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Assignments].[ID] AS [ID], 
-    [Assignments].[Employe_ID] AS [Employe_ID], 
-    [Assignments].[Order_ID] AS [Order_ID]
-    FROM [dbo].[Assignments] AS [Assignments]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Order_Details" EntityType="Self.Order_Details" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Order_Details].[ID] AS [ID], 
-    [Order_Details].[Product_ID] AS [Product_ID], 
-    [Order_Details].[Order_ID] AS [Order_ID], 
-    [Order_Details].[Quantity] AS [Quantity], 
-    [Order_Details].[Specifications] AS [Specifications]
-    FROM [dbo].[Order_Details] AS [Order_Details]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Assignments_Employee" Association="Self.FK_Assignments_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Assignments" EntitySet="Assignments" />
@@ -223,13 +200,21 @@ warning 6002: The table/view 'ComapanySalesDB.dbo.Order_Details' does not have a
     <edmx:ConceptualModels>
       <Schema Namespace="ComapanySalesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ComapanySalesDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Assignments" EntityType="ComapanySalesDBModel.Assignments" />
           <EntitySet Name="Billing" EntityType="ComapanySalesDBModel.Billing" />
           <EntitySet Name="Client" EntityType="ComapanySalesDBModel.Client" />
           <EntitySet Name="Employee" EntityType="ComapanySalesDBModel.Employee" />
           <EntitySet Name="Order" EntityType="ComapanySalesDBModel.Order" />
-          <EntitySet Name="Product" EntityType="ComapanySalesDBModel.Product" />
-          <EntitySet Name="Assignments" EntityType="ComapanySalesDBModel.Assignments" />
           <EntitySet Name="Order_Details" EntityType="ComapanySalesDBModel.Order_Details" />
+          <EntitySet Name="Product" EntityType="ComapanySalesDBModel.Product" />
+          <AssociationSet Name="FK_Assignments_Employee" Association="ComapanySalesDBModel.FK_Assignments_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Assignments" EntitySet="Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assignments_Order" Association="ComapanySalesDBModel.FK_Assignments_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Assignments" EntitySet="Assignments" />
+          </AssociationSet>
           <AssociationSet Name="FK_Billing_Client" Association="ComapanySalesDBModel.FK_Billing_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="Billing" EntitySet="Billing" />
@@ -242,14 +227,6 @@ warning 6002: The table/view 'ComapanySalesDB.dbo.Order_Details' does not have a
             <End Role="Client" EntitySet="Client" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK_Assignments_Employee" Association="ComapanySalesDBModel.FK_Assignments_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Assignments" EntitySet="Assignments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Assignments_Order" Association="ComapanySalesDBModel.FK_Assignments_Order">
-            <End Role="Order" EntitySet="Order" />
-            <End Role="Assignments" EntitySet="Assignments" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Details_Order" Association="ComapanySalesDBModel.FK_Order_Details_Order">
             <End Role="Order" EntitySet="Order" />
             <End Role="Order_Details" EntitySet="Order_Details" />
@@ -259,6 +236,16 @@ warning 6002: The table/view 'ComapanySalesDB.dbo.Order_Details' does not have a
             <End Role="Order_Details" EntitySet="Order_Details" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Assignments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employe_ID" Type="Int32" Nullable="false" />
+          <Property Name="Order_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="ComapanySalesDBModel.FK_Assignments_Employee" FromRole="Assignments" ToRole="Employee" />
+          <NavigationProperty Name="Order" Relationship="ComapanySalesDBModel.FK_Assignments_Order" FromRole="Assignments" ToRole="Order" />
+        </EntityType>
         <EntityType Name="Billing">
           <Key>
             <PropertyRef Name="ID" />
@@ -304,10 +291,22 @@ warning 6002: The table/view 'ComapanySalesDB.dbo.Order_Details' does not have a
           <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Term" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Client_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Assignments" Relationship="ComapanySalesDBModel.FK_Assignments_Order" FromRole="Order" ToRole="Assignments" />
           <NavigationProperty Name="Billing" Relationship="ComapanySalesDBModel.FK_Billing_Order" FromRole="Order" ToRole="Billing" />
           <NavigationProperty Name="Client" Relationship="ComapanySalesDBModel.FK_Order_Client" FromRole="Order" ToRole="Client" />
-          <NavigationProperty Name="Assignments" Relationship="ComapanySalesDBModel.FK_Assignments_Order" FromRole="Order" ToRole="Assignments" />
           <NavigationProperty Name="Order_Details" Relationship="ComapanySalesDBModel.FK_Order_Details_Order" FromRole="Order" ToRole="Order_Details" />
+        </EntityType>
+        <EntityType Name="Order_Details">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Order_ID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Specifications" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order" Relationship="ComapanySalesDBModel.FK_Order_Details_Order" FromRole="Order_Details" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="ComapanySalesDBModel.FK_Order_Details_Product" FromRole="Order_Details" ToRole="Product" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -320,33 +319,30 @@ warning 6002: The table/view 'ComapanySalesDB.dbo.Order_Details' does not have a
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Order_Details" Relationship="ComapanySalesDBModel.FK_Order_Details_Product" FromRole="Product" ToRole="Order_Details" />
         </EntityType>
-        <EntityType Name="Assignments">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="Employe_ID" />
-            <PropertyRef Name="Order_ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Employe_ID" Type="Int32" Nullable="false" />
-          <Property Name="Order_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="ComapanySalesDBModel.FK_Assignments_Employee" FromRole="Assignments" ToRole="Employee" />
-          <NavigationProperty Name="Order" Relationship="ComapanySalesDBModel.FK_Assignments_Order" FromRole="Assignments" ToRole="Order" />
-        </EntityType>
-        <EntityType Name="Order_Details">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="Product_ID" />
-            <PropertyRef Name="Order_ID" />
-            <PropertyRef Name="Quantity" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Product_ID" Type="Int32" Nullable="false" />
-          <Property Name="Order_ID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Specifications" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Order" Relationship="ComapanySalesDBModel.FK_Order_Details_Order" FromRole="Order_Details" ToRole="Order" />
-          <NavigationProperty Name="Product" Relationship="ComapanySalesDBModel.FK_Order_Details_Product" FromRole="Order_Details" ToRole="Product" />
-        </EntityType>
+        <Association Name="FK_Assignments_Employee">
+          <End Type="ComapanySalesDBModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="ComapanySalesDBModel.Assignments" Role="Assignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assignments">
+              <PropertyRef Name="Employe_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assignments_Order">
+          <End Type="ComapanySalesDBModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="ComapanySalesDBModel.Assignments" Role="Assignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Assignments">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Billing_Client">
           <End Type="ComapanySalesDBModel.Client" Role="Client" Multiplicity="1" />
           <End Type="ComapanySalesDBModel.Billing" Role="Billing" Multiplicity="*" />
@@ -383,30 +379,6 @@ warning 6002: The table/view 'ComapanySalesDB.dbo.Order_Details' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Assignments_Employee">
-          <End Type="ComapanySalesDBModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="ComapanySalesDBModel.Assignments" Role="Assignments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Assignments">
-              <PropertyRef Name="Employe_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Assignments_Order">
-          <End Type="ComapanySalesDBModel.Order" Role="Order" Multiplicity="1" />
-          <End Type="ComapanySalesDBModel.Assignments" Role="Assignments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Assignments">
-              <PropertyRef Name="Order_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Details_Order">
           <End Type="ComapanySalesDBModel.Order" Role="Order" Multiplicity="1" />
           <End Type="ComapanySalesDBModel.Order_Details" Role="Order_Details" Multiplicity="*" />
@@ -437,6 +409,15 @@ warning 6002: The table/view 'ComapanySalesDB.dbo.Order_Details' does not have a
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ComapanySalesDBModelStoreContainer" CdmEntityContainer="ComapanySalesDBEntities">
+          <EntitySetMapping Name="Assignments">
+            <EntityTypeMapping TypeName="ComapanySalesDBModel.Assignments">
+              <MappingFragment StoreEntitySet="Assignments">
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Employe_ID" ColumnName="Employe_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Billing">
             <EntityTypeMapping TypeName="ComapanySalesDBModel.Billing">
               <MappingFragment StoreEntitySet="Billing">
@@ -482,26 +463,6 @@ warning 6002: The table/view 'ComapanySalesDB.dbo.Order_Details' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="ComapanySalesDBModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Assignments">
-            <EntityTypeMapping TypeName="ComapanySalesDBModel.Assignments">
-              <MappingFragment StoreEntitySet="Assignments">
-                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
-                <ScalarProperty Name="Employe_ID" ColumnName="Employe_ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Order_Details">
             <EntityTypeMapping TypeName="ComapanySalesDBModel.Order_Details">
               <MappingFragment StoreEntitySet="Order_Details">
@@ -509,6 +470,17 @@ warning 6002: The table/view 'ComapanySalesDB.dbo.Order_Details' does not have a
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="ComapanySalesDBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

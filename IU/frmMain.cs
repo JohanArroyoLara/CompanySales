@@ -1,5 +1,6 @@
 ﻿using IU.Billing;
 using IU.Employees;
+using IU.Order;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -199,6 +200,13 @@ namespace IU
         private void editarEmpleadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmSearchEmployee frmSearchEmployee = new frmSearchEmployee();
+            frmSearchEmployee.MdiParent = this;
+            frmSearchEmployee.Show();
+        }
+
+        private void agregarOrdenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddOrder frmSearchEmployee = new frmAddOrder();
             frmSearchEmployee.MdiParent = this;
             frmSearchEmployee.Show();
         }

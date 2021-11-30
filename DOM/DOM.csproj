@@ -44,6 +44,7 @@
     <Compile Include="BillingDOM.cs" />
     <Compile Include="ClientDOM.cs" />
     <Compile Include="EmployeeDOM.cs" />
+    <Compile Include="OrderDetailsDom.cs" />
     <Compile Include="OrderDOM.cs" />
     <Compile Include="ProductDOM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

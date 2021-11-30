@@ -25,12 +25,12 @@ namespace ContextDB
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Assignments> Assignments { get; set; }
         public virtual DbSet<Billing> Billing { get; set; }
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Order> Order { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<Assignments> Assignments { get; set; }
         public virtual DbSet<Order_Details> Order_Details { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
     }
 }
