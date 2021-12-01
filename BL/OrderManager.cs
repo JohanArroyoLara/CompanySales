@@ -28,9 +28,20 @@ namespace BL
             return orderDao.removeOrder(id);
         }
 
+        public Boolean removeOrderDetails(int id)
+        {
+            return orderDao.removeOrderDetails(id);
+        }
+
+
         public void updateOrder(OrderDOM order)
         {
             orderDao.updateOrder(order);
+        }
+
+        public void updateOrderState(OrderDOM order)
+        {
+            orderDao.updateOrderState(order);
         }
 
         public void addOrderDetail(OrderDetailsDom order)
@@ -38,10 +49,21 @@ namespace BL
             orderDao.addOrderDetails(order);
         }
 
+        public List<OrderDetailsDom> getOrderDetails(OrderDOM order)
+        {
+            return orderDao.getOrderDetails(order);
+        }
 
-        public List<OrderDOM> orderlist()
+            public List<OrderDOM> orderlist()
         {
             return orderDao.ordersList();
         }
+
+        public List<OrderDetailsDom> orderdetaiList()
+        {
+            return orderDao.getOrderDetails();
+        }
+
+
     }
 }

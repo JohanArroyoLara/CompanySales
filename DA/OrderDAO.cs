@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
+
 namespace DA
 {
    public class OrderDAO
@@ -22,7 +23,7 @@ namespace DA
             newOrder.Date = order.Date.Date;
             newOrder.State = order.State;
             newOrder.Term = order.Term.Date;
-
+            newOrder.Total = order.Total;
 
             DBContext.Order.Add(newOrder);
 
@@ -54,6 +55,7 @@ namespace DA
                 order.State = orderToFind.State;
                 order.Date = orderToFind.Date;
                 order.Term = orderToFind.Term;
+                order.Total = (decimal)orderToFind.Total;
 
                 return order;
             }
@@ -63,6 +65,32 @@ namespace DA
             }
 
         }
+
+
+        public List<OrderDetailsDom> getOrderDetails()
+        {
+
+            List<Order_Details> list = new List<Order_Details>();
+            List<OrderDetailsDom> returnList = new List<OrderDetailsDom>();
+            list = DBContext.Order_Details.ToList();
+
+
+
+            foreach (Order_Details e in list)
+            {
+
+               
+
+                returnList.Add(new OrderDetailsDom(e.ID, e.Product_ID, e.Order_ID, e.Quantity, e.Specifications));
+            }
+
+            return returnList;
+
+
+        }
+
+
+
 
         public void updateOrder(OrderDOM employee)
         {
@@ -74,10 +102,32 @@ namespace DA
             newOrder.Date = employee.Date;
             newOrder.State = employee.State;
             newOrder.Term = employee.Term;
+            newOrder.Total = employee.Total;
 
             DBContext.Order.Attach(newOrder);
             DBContext.Entry(newOrder).State = EntityState.Modified;
             DBContext.SaveChanges();
+
+        }
+
+        public void updateOrderState(OrderDOM orderID)
+        {
+
+            List<Order> list = new List<Order>();
+            list = DBContext.Order.ToList();
+
+            foreach (Order o in list)
+            {
+                if (o.ID.Equals(orderID.Id))
+                {
+                    o.State = "Entregada";
+                    DBContext.Order.Attach(o);
+                    DBContext.Entry(o).State = EntityState.Modified;
+                    DBContext.SaveChanges();
+                }
+            }
+                
+            
 
         }
 
@@ -97,6 +147,25 @@ namespace DA
 
         }
 
+
+        public Boolean removeOrderDetails(int id)
+        {
+            try
+            {
+                Order_Details newOrder = DBContext.Order_Details.Find(id);
+                DBContext.Entry(newOrder).State = EntityState.Deleted;
+                DBContext.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
+
+
         public List<OrderDOM> ordersList()
         {
 
@@ -104,13 +173,37 @@ namespace DA
             List<OrderDOM> returnList = new List<OrderDOM>();
             list = DBContext.Order.ToList();
 
-            foreach (Order e in list)
+            foreach (Order o in list)
             {
-                returnList.Add(new OrderDOM(e.ID, e.Client_ID, e.State, e.Date, e.Term));
+                returnList.Add(new OrderDOM(o.ID, o.Client_ID, o.State, o.Date, o.Term, (decimal)o.Total));
             }
 
             return returnList;
         }
+
+
+        public List<OrderDOM> clientOrders(int idClient)
+        {
+
+            List<Order> list = new List<Order>();
+            List<OrderDOM> returnList = new List<OrderDOM>();
+            list = DBContext.Order.ToList();
+
+            foreach (Order o in list)
+            {
+                if (!o.State.Equals("Entregada"))
+                {
+                    if (o.Client_ID.Equals(idClient))
+                    {
+                        returnList.Add(new OrderDOM(o.ID, o.Client_ID, o.State, o.Date, o.Term, (decimal)o.Total));
+                    }
+                }
+            }
+
+            return returnList;
+        }
+
+
 
         public Boolean addOrderDetails(OrderDetailsDom orderD)
         {
@@ -143,7 +236,22 @@ namespace DA
         }
 
 
+        public List<OrderDetailsDom> getOrderDetails(OrderDOM order)
+        {
+            List<Order_Details> list = new List<Order_Details>();
+            List<OrderDetailsDom> returnList = new List<OrderDetailsDom>();
+            list = DBContext.Order_Details.ToList();
 
+            foreach (Order_Details o in list)
+            {
+                if (o.Order_ID.Equals(order.Id))
+                {
+                        returnList.Add(new OrderDetailsDom(o.ID, o.Product_ID, o.Order_ID, o.Quantity, o.Specifications));
+                }
+            }
+
+            return returnList;
+        }
 
 
 

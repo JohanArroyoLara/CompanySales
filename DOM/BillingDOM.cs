@@ -28,6 +28,15 @@ namespace DOM
             this.subTotal = subTotal;
         }
 
+        public BillingDOM(int id, int orderID, int clientID, Decimal subTotal, DateTime billingDate)
+        {
+            this.id = id;
+            this.orderID = orderID;
+            this.clientID = clientID;
+            this.subTotal = subTotal;
+            this.billingDate = billingDate;
+        }
+
         public BillingDOM(int orderID, int clientID, Decimal subTotal)
         {
             this.orderID = orderID;
