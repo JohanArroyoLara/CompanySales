@@ -236,7 +236,22 @@ namespace DA
         }
 
 
+        public List<OrderDetailsDom> getOrderDetails(OrderDOM order)
+        {
+            List<Order_Details> list = new List<Order_Details>();
+            List<OrderDetailsDom> returnList = new List<OrderDetailsDom>();
+            list = DBContext.Order_Details.ToList();
 
+            foreach (Order_Details o in list)
+            {
+                if (o.Order_ID.Equals(order.Id))
+                {
+                        returnList.Add(new OrderDetailsDom(o.ID, o.Product_ID, o.Order_ID, o.Quantity, o.Specifications));
+                }
+            }
+
+            return returnList;
+        }
 
 
 
