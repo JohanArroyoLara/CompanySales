@@ -43,12 +43,14 @@ namespace IU.Order
             this.textBoxID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpicker = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtObservations = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(75, 30);
+            this.label1.Location = new System.Drawing.Point(74, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 17);
             this.label1.TabIndex = 0;
@@ -58,7 +60,7 @@ namespace IU.Order
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(218, 30);
+            this.comboBox1.Location = new System.Drawing.Point(218, 64);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 24);
             this.comboBox1.TabIndex = 1;
@@ -82,7 +84,7 @@ namespace IU.Order
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(77, 193);
+            this.button1.Location = new System.Drawing.Point(126, 328);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 41);
             this.button1.TabIndex = 14;
@@ -92,15 +94,16 @@ namespace IU.Order
             // 
             // txtMuebles
             // 
-            this.txtMuebles.Location = new System.Drawing.Point(77, 295);
+            this.txtMuebles.Location = new System.Drawing.Point(540, 64);
+            this.txtMuebles.Multiline = true;
             this.txtMuebles.Name = "txtMuebles";
-            this.txtMuebles.Size = new System.Drawing.Size(261, 22);
+            this.txtMuebles.Size = new System.Drawing.Size(209, 222);
             this.txtMuebles.TabIndex = 15;
             // 
             // lblFurniture
             // 
             this.lblFurniture.AutoSize = true;
-            this.lblFurniture.Location = new System.Drawing.Point(77, 94);
+            this.lblFurniture.Location = new System.Drawing.Point(74, 105);
             this.lblFurniture.Name = "lblFurniture";
             this.lblFurniture.Size = new System.Drawing.Size(61, 17);
             this.lblFurniture.TabIndex = 16;
@@ -109,7 +112,7 @@ namespace IU.Order
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(218, 87);
+            this.comboBox2.Location = new System.Drawing.Point(218, 105);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 24);
             this.comboBox2.TabIndex = 17;
@@ -118,7 +121,7 @@ namespace IU.Order
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(74, 257);
+            this.label2.Location = new System.Drawing.Point(449, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 17);
             this.label2.TabIndex = 18;
@@ -126,7 +129,7 @@ namespace IU.Order
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(77, 383);
+            this.button2.Location = new System.Drawing.Point(321, 392);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(130, 46);
             this.button2.TabIndex = 19;
@@ -137,16 +140,16 @@ namespace IU.Order
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(466, 33);
+            this.label3.Location = new System.Drawing.Point(237, 27);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 17);
+            this.label3.Size = new System.Drawing.Size(102, 17);
             this.label3.TabIndex = 20;
-            this.label3.Text = "ID orden";
+            this.label3.Text = "Numero Orden";
             // 
             // textBoxID
             // 
             this.textBoxID.Enabled = false;
-            this.textBoxID.Location = new System.Drawing.Point(546, 25);
+            this.textBoxID.Location = new System.Drawing.Point(367, 27);
             this.textBoxID.Name = "textBoxID";
             this.textBoxID.Size = new System.Drawing.Size(160, 22);
             this.textBoxID.TabIndex = 21;
@@ -154,7 +157,7 @@ namespace IU.Order
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(77, 338);
+            this.label4.Location = new System.Drawing.Point(410, 328);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(117, 17);
             this.label4.TabIndex = 22;
@@ -162,16 +165,35 @@ namespace IU.Order
             // 
             // dtpicker
             // 
-            this.dtpicker.Location = new System.Drawing.Point(218, 338);
+            this.dtpicker.Location = new System.Drawing.Point(540, 323);
             this.dtpicker.Name = "dtpicker";
-            this.dtpicker.Size = new System.Drawing.Size(200, 22);
+            this.dtpicker.Size = new System.Drawing.Size(209, 22);
             this.dtpicker.TabIndex = 23;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(74, 185);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(103, 17);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Observaciones";
+            // 
+            // txtObservations
+            // 
+            this.txtObservations.Location = new System.Drawing.Point(77, 222);
+            this.txtObservations.Multiline = true;
+            this.txtObservations.Name = "txtObservations";
+            this.txtObservations.Size = new System.Drawing.Size(262, 83);
+            this.txtObservations.TabIndex = 25;
             // 
             // frmAddOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtObservations);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.dtpicker);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxID);
@@ -210,5 +232,7 @@ namespace IU.Order
         private System.Windows.Forms.TextBox textBoxID;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtpicker;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtObservations;
     }
 }

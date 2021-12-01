@@ -8,27 +8,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DOM;
 
 namespace IU.Employees
 {
     public partial class frmDeleteEmployee : Form
     {
+        private List<EmployeeDOM> employees = null;
         RegularExpressions regularExpressions = new RegularExpressions();
 
         public frmDeleteEmployee()
         {
             InitializeComponent();
+            EmployeeManager employeM = new EmployeeManager();
+          employees = employeM.employeesList();
+            int counter = 0;
+            foreach (var item in employees)
+            {
+
+                cbEmployee.Items.Add(employees.ElementAt(counter).Name);
+                counter = counter + 1;
+            }
         }
 
         private void btnDeleteClient_Click(object sender, EventArgs e)
         {
             EmployeeManager employeeManager = new EmployeeManager();
 
-            if (regularExpressions.allTextBoxesFilled(txtClientID))
+            int id = 0;
+            int counter = 0;
+            foreach (var item in employees)
             {
-                int id = int.Parse(txtClientID.Text);
+                if (cbEmployee.SelectedItem.ToString().Equals(employees.ElementAt(counter).Name))
+                {
+                    id = employees.ElementAt(counter).Id;
+                }
+                counter = counter + 1;
+            }
 
-                if (employeeManager.getEmployee(id) != null)
+
+            if (employeeManager.getEmployee(id) != null)
                 {
                     DialogResult result = MessageBox.Show("¿Seguro que desea eliminar al empleado?",
                         "ATENCIÓN", MessageBoxButtons.YesNo);
@@ -50,11 +69,7 @@ namespace IU.Employees
                     MessageBox.Show("No existen empleados registrados con esa cédula");
                 }
 
-            }
-            else
-            {
-                MessageBox.Show("Por favor, digite un código");
-            }
+          
         }
 
         private void txtClientID_KeyPress(object sender, KeyPressEventArgs e)

@@ -14,20 +14,37 @@ namespace IU
 {
     public partial class frmDeleteClient : Form
     {
+        private List<ClientDOM> clients = null;
 
         RegularExpressions regularExpressions = new RegularExpressions();
         public frmDeleteClient()
         {
             InitializeComponent();
+            ClientManager clientM = new ClientManager();
+           clients = clientM.clientsList();
+            int counter = 0;
+            foreach (var item in clients)
+            {
+
+               cbClient.Items.Add(clients.ElementAt(counter).FirstName);
+                counter = counter + 1;
+            }
         }
 
         private void btnDeleteClient_Click(object sender, EventArgs e)
         {
             ClientManager clientManager = new ClientManager();
-
-            if (regularExpressions.allTextBoxesFilled(txtClientID))
+            int id = 0;
+            int counter = 0;
+            foreach (var item in clients)
             {
-                int id = int.Parse(txtClientID.Text);
+                if (cbClient.SelectedItem.ToString().Equals(clients.ElementAt(counter).FirstName))
+                {
+                    id = clients.ElementAt(counter).Id;
+                }
+                counter = counter + 1;
+            }
+          
 
                 if (clientManager.getClient(id) != null)
                 {
@@ -51,11 +68,6 @@ namespace IU
                     MessageBox.Show("No existen clientes registrados con esa cédula");
                 }
 
-            }
-            else
-            {
-                MessageBox.Show("Por favor, digite un código");
-            }
 
         }
 
