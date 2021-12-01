@@ -49,9 +49,9 @@ namespace IU.Billing
             this.lblID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
             this.lblID.Location = new System.Drawing.Point(12, 28);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(224, 27);
+            this.lblID.Size = new System.Drawing.Size(100, 27);
             this.lblID.TabIndex = 17;
-            this.lblID.Text = "Cédula del cliente:";
+            this.lblID.Text = "Cliente:";
             // 
             // grdBilling
             // 
@@ -69,7 +69,7 @@ namespace IU.Billing
             this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
             this.btnSearch.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(446, 28);
+            this.btnSearch.Location = new System.Drawing.Point(347, 22);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(201, 39);
             this.btnSearch.TabIndex = 19;
@@ -79,14 +79,14 @@ namespace IU.Billing
             // 
             // dtpSince
             // 
-            this.dtpSince.Location = new System.Drawing.Point(109, 85);
+            this.dtpSince.Location = new System.Drawing.Point(123, 85);
             this.dtpSince.Name = "dtpSince";
             this.dtpSince.Size = new System.Drawing.Size(195, 20);
             this.dtpSince.TabIndex = 20;
             // 
             // dtpTo
             // 
-            this.dtpTo.Location = new System.Drawing.Point(446, 85);
+            this.dtpTo.Location = new System.Drawing.Point(428, 85);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(201, 20);
             this.dtpTo.TabIndex = 21;
@@ -137,10 +137,10 @@ namespace IU.Billing
             // cbClients
             // 
             this.cbClients.FormattingEnabled = true;
-            this.cbClients.Location = new System.Drawing.Point(241, 34);
+            this.cbClients.Location = new System.Drawing.Point(123, 34);
             this.cbClients.Margin = new System.Windows.Forms.Padding(2);
             this.cbClients.Name = "cbClients";
-            this.cbClients.Size = new System.Drawing.Size(181, 21);
+            this.cbClients.Size = new System.Drawing.Size(195, 21);
             this.cbClients.TabIndex = 26;
             // 
             // frmBillingReport

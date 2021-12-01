@@ -139,10 +139,13 @@ namespace IU.Billing
                 foreach (OrderDOM item in orders)
                 {
 
-                    billing = new BillingDOM(item.Client_ID, item.Id, item.Total);
+                   
+                    billing = new BillingDOM(item.Id, item.Client_ID, item.Total);
 
                     if (billingManager.addBilling(billing))
                     {
+                        //item.State = "Entregada";
+                        //orderManager.updateOrder(item);
                         MessageBox.Show("Facturación realizada con éxito");
                     }
                     else

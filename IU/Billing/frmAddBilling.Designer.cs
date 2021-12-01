@@ -49,18 +49,18 @@ namespace IU.Billing
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Rockwell", 18F);
             this.lblID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.lblID.Location = new System.Drawing.Point(12, 44);
+            this.lblID.Location = new System.Drawing.Point(45, 40);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(224, 27);
+            this.lblID.Size = new System.Drawing.Size(100, 27);
             this.lblID.TabIndex = 29;
-            this.lblID.Text = "Cédula del cliente:";
+            this.lblID.Text = "Cliente:";
             // 
             // lblCode
             // 
             this.lblCode.AutoSize = true;
             this.lblCode.Font = new System.Drawing.Font("Rockwell", 18F);
             this.lblCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.lblCode.Location = new System.Drawing.Point(127, 109);
+            this.lblCode.Location = new System.Drawing.Point(45, 105);
             this.lblCode.Name = "lblCode";
             this.lblCode.Size = new System.Drawing.Size(109, 27);
             this.lblCode.TabIndex = 31;
@@ -71,7 +71,7 @@ namespace IU.Billing
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Rockwell", 18F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.label1.Location = new System.Drawing.Point(141, 406);
+            this.label1.Location = new System.Drawing.Point(59, 402);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(117, 27);
             this.label1.TabIndex = 37;
@@ -80,7 +80,7 @@ namespace IU.Billing
             // txtSubTotal
             // 
             this.txtSubTotal.Enabled = false;
-            this.txtSubTotal.Location = new System.Drawing.Point(281, 413);
+            this.txtSubTotal.Location = new System.Drawing.Point(199, 409);
             this.txtSubTotal.Name = "txtSubTotal";
             this.txtSubTotal.Size = new System.Drawing.Size(165, 20);
             this.txtSubTotal.TabIndex = 36;
@@ -91,7 +91,7 @@ namespace IU.Billing
             this.btnInvoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
             this.btnInvoice.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInvoice.ForeColor = System.Drawing.Color.White;
-            this.btnInvoice.Location = new System.Drawing.Point(555, 399);
+            this.btnInvoice.Location = new System.Drawing.Point(473, 395);
             this.btnInvoice.Name = "btnInvoice";
             this.btnInvoice.Size = new System.Drawing.Size(155, 39);
             this.btnInvoice.TabIndex = 38;
@@ -104,7 +104,7 @@ namespace IU.Billing
             this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
             this.btnSearch.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(555, 38);
+            this.btnSearch.Location = new System.Drawing.Point(473, 34);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(155, 39);
             this.btnSearch.TabIndex = 39;
@@ -115,7 +115,7 @@ namespace IU.Billing
             // orderID
             // 
             this.orderID.FormattingEnabled = true;
-            this.orderID.Location = new System.Drawing.Point(281, 142);
+            this.orderID.Location = new System.Drawing.Point(199, 138);
             this.orderID.Name = "orderID";
             this.orderID.Size = new System.Drawing.Size(104, 212);
             this.orderID.TabIndex = 40;
@@ -123,7 +123,7 @@ namespace IU.Billing
             // orderDate
             // 
             this.orderDate.FormattingEnabled = true;
-            this.orderDate.Location = new System.Drawing.Point(383, 142);
+            this.orderDate.Location = new System.Drawing.Point(301, 138);
             this.orderDate.Name = "orderDate";
             this.orderDate.Size = new System.Drawing.Size(173, 212);
             this.orderDate.TabIndex = 41;
@@ -131,7 +131,7 @@ namespace IU.Billing
             // orderPrice
             // 
             this.orderPrice.FormattingEnabled = true;
-            this.orderPrice.Location = new System.Drawing.Point(555, 142);
+            this.orderPrice.Location = new System.Drawing.Point(473, 138);
             this.orderPrice.Name = "orderPrice";
             this.orderPrice.Size = new System.Drawing.Size(155, 212);
             this.orderPrice.TabIndex = 42;
@@ -140,7 +140,7 @@ namespace IU.Billing
             // 
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
             this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(281, 116);
+            this.textBox1.Location = new System.Drawing.Point(199, 112);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(104, 20);
             this.textBox1.TabIndex = 43;
@@ -151,7 +151,7 @@ namespace IU.Billing
             // 
             this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
             this.textBox2.ForeColor = System.Drawing.Color.White;
-            this.textBox2.Location = new System.Drawing.Point(383, 116);
+            this.textBox2.Location = new System.Drawing.Point(301, 112);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(173, 20);
             this.textBox2.TabIndex = 44;
@@ -162,7 +162,7 @@ namespace IU.Billing
             // 
             this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
             this.textBox3.ForeColor = System.Drawing.Color.White;
-            this.textBox3.Location = new System.Drawing.Point(555, 116);
+            this.textBox3.Location = new System.Drawing.Point(473, 112);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(155, 20);
             this.textBox3.TabIndex = 45;
@@ -172,7 +172,7 @@ namespace IU.Billing
             // cbClients
             // 
             this.cbClients.FormattingEnabled = true;
-            this.cbClients.Location = new System.Drawing.Point(281, 52);
+            this.cbClients.Location = new System.Drawing.Point(199, 48);
             this.cbClients.Name = "cbClients";
             this.cbClients.Size = new System.Drawing.Size(239, 21);
             this.cbClients.TabIndex = 46;
@@ -182,7 +182,7 @@ namespace IU.Billing
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(241)))), ((int)(((byte)(221)))));
-            this.ClientSize = new System.Drawing.Size(830, 485);
+            this.ClientSize = new System.Drawing.Size(676, 463);
             this.Controls.Add(this.cbClients);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);

@@ -124,9 +124,12 @@ namespace DA
 
             foreach (Order o in list)
             {
-                if (o.Client_ID.Equals(idClient))
+                if (!o.State.Equals("Entregada"))
                 {
-                    returnList.Add(new OrderDOM(o.ID, o.Client_ID, o.State, o.Date, o.Term,(decimal)o.Total));
+                    if (o.Client_ID.Equals(idClient))
+                    {
+                        returnList.Add(new OrderDOM(o.ID, o.Client_ID, o.State, o.Date, o.Term, (decimal)o.Total));
+                    }
                 }
             }
 
