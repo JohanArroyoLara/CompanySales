@@ -106,9 +106,28 @@ namespace DA
             List<OrderDOM> returnList = new List<OrderDOM>();
             list = DBContext.Order.ToList();
 
-            foreach (Order e in list)
+            foreach (Order o in list)
             {
-                returnList.Add(new OrderDOM(e.ID, e.Client_ID, e.State, e.Date, e.Term, (decimal)e.Total));
+                returnList.Add(new OrderDOM(o.ID, o.Client_ID, o.State, o.Date, o.Term));
+            }
+
+            return returnList;
+        }
+
+
+        public List<OrderDOM> clientOrders(int idClient)
+        {
+
+            List<Order> list = new List<Order>();
+            List<OrderDOM> returnList = new List<OrderDOM>();
+            list = DBContext.Order.ToList();
+
+            foreach (Order o in list)
+            {
+                if (o.Client_ID.Equals(idClient))
+                {
+                    returnList.Add(new OrderDOM(o.ID, o.Client_ID, o.State, o.Date, o.Term));
+                }
             }
 
             return returnList;
