@@ -16,10 +16,20 @@ namespace IU.Billing
     {
 
         RegularExpressions regularExpressions = new RegularExpressions();
+        private List<ClientDOM> clients = null;
 
         public frmAddBilling()
         {
             InitializeComponent();
+            ClientManager clientM = new ClientManager();
+            clients = clientM.clientsList();
+            int counter = 0;
+            foreach (var item in clients)
+            {
+
+                cbClients.Items.Add(clients.ElementAt(counter).FirstName);
+                counter = counter + 1;
+            }
         }
 
         private void txtClientID_KeyPress(object sender, KeyPressEventArgs e)
@@ -39,27 +49,59 @@ namespace IU.Billing
 
         private void btnSearchProduct_Click(object sender, EventArgs e)
         {
+
+            ClientManager clientManager = new ClientManager();
             ProductManager productManager = new ProductManager();
-            ProductDOM product = new ProductDOM();
+            OrderManager orderManager = new OrderManager();
+            List<OrderDOM> orders = new List<OrderDOM>();
+            orderID.Items.Clear();
+            orderDate.Items.Clear();
+            orderPrice.Items.Clear();
+            int total = 0;
 
-            if (regularExpressions.allTextBoxesFilled(txtProductCode))
+            if (cbClients.SelectedIndex == -1)
             {
-                product = productManager.getProduct(int.Parse(txtProductCode.Text));
-
-                if (product != null)
-                {
-                    txtPrice.Text = product.SalesPrice.ToString();
-                }
-                else
-                {
-                    MessageBox.Show("No se encontró el producto");
-                    txtPrice.Text = "";
-                }
-
+                MessageBox.Show("Porfavor seleccione un cliente");
             }
             else
             {
-                MessageBox.Show("Por favor, digite un código");
+                int id = 0;
+                int counter = 0;
+                foreach (var item in clients)
+                {
+                    if (cbClients.SelectedItem.ToString().Equals(clients.ElementAt(counter).FirstName))
+                    {
+                        id = clients.ElementAt(counter).Id;
+                    }
+                    counter = counter + 1;
+                }
+
+
+                int clientID = id;
+
+
+                if (clientManager.getClient(clientID) != null)
+                {
+
+                    orders = orderManager.clientOrders(clientID);
+
+                    foreach (OrderDOM item in orders)
+                    {
+                        orderID.Items.Add(item.Id);
+                        orderDate.Items.Add(item.Date.ToString("dd-MM-yyyy"));
+                        orderPrice.Items.Add(item.Total);
+                        total += int.Parse(item.Total.ToString());
+
+                    }
+
+                    txtSubTotal.Text = total.ToString();
+
+                }
+                else
+                {
+                    MessageBox.Show("No existe un cliente con esa cédula");
+                }
+
             }
             
         }
@@ -67,59 +109,56 @@ namespace IU.Billing
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (regularExpressions.allTextBoxesFilled(txtClientID, txtProductCode, txtQuantity,
-                txtPrice))
+            BillingManager billingManager = new BillingManager();
+            BillingDOM billing = new BillingDOM();
+            OrderManager orderManager = new OrderManager();
+            List<OrderDOM> orders = new List<OrderDOM>();
+
+            if (cbClients.SelectedIndex == -1)
             {
-
-                ClientManager clientManager = new ClientManager();
-                ProductManager productManager = new ProductManager();
-                ProductDOM product = new ProductDOM();
-
-                int clientID = int.Parse(txtClientID.Text);
-                product = productManager.getProduct(int.Parse(txtProductCode.Text));
-
-                
-                if (int.Parse(txtQuantity.Text)<=product.Quantity)
+                MessageBox.Show("Porfavor seleccione un cliente");
+            }
+            else
+            {
+                int id = 0;
+                int counter = 0;
+                foreach (var item in clients)
                 {
-                    if (clientManager.getClient(clientID) != null)
+                    if (cbClients.SelectedItem.ToString().Equals(clients.ElementAt(counter).FirstName))
                     {
+                        id = clients.ElementAt(counter).Id;
+                    }
+                    counter = counter + 1;
+                }
 
-                        BillingManager billingManager = new BillingManager();
 
-                        int subTotal = int.Parse(txtQuantity.Text) * int.Parse(txtPrice.Text);
+                int clientID = id;
 
-                        BillingDOM billing = new BillingDOM(clientID,
-                            int.Parse(txtProductCode.Text),
-                         /*se ocupa cambiar a orderID*/   clientID, subTotal);
+                orders = orderManager.clientOrders(clientID);
 
-                        if (billingManager.addBilling(billing))
-                        {
-                            MessageBox.Show("Facturación realizada con éxito");
-                            //product.InvetoryQuantity = product.InvetoryQuantity - int.Parse(txtQuantity.Text);
-                            //productManager.updateProduct(product);
-                        }
-                        else
-                        {
-                            MessageBox.Show("ERROR realizando la facturación");
-                        }
+                foreach (OrderDOM item in orders)
+                {
+
+                   
+                    billing = new BillingDOM(item.Id, item.Client_ID, item.Total);
+
+                    if (billingManager.addBilling(billing))
+                    {
+                        orderManager.updateOrderState(item);
+                        MessageBox.Show("Facturación realizada con éxito");
+                        orderID.Items.Clear();
+                        orderDate.Items.Clear();
+                        orderPrice.Items.Clear();
+                        txtSubTotal.Text = "";
 
                     }
                     else
                     {
-                        MessageBox.Show("No existe un cliente con esa cédula");
+                        MessageBox.Show("ERROR realizando la facturación");
                     }
 
                 }
-                else
-                {
-                    MessageBox.Show("La cantidad solicitada excede la del inventario\n" +
-                        "Unidades en el inventario: " + product.Quantity);
-                }
 
-            }
-            else
-            {
-                MessageBox.Show("Por favor, rellene todas las casillas");
             }
 
         }
@@ -131,16 +170,18 @@ namespace IU.Billing
 
         private void txtQuantity_KeyUp(object sender, KeyEventArgs e)
         {
-            if (regularExpressions.allTextBoxesFilled(txtQuantity, txtPrice))
-            {
-                int subTotal = int.Parse(txtQuantity.Text) * int.Parse(txtPrice.Text);
-                txtSubTotal.Text = subTotal.ToString();
-            }
-            else
-            {
-                txtSubTotal.Text = "";
-            }
+           
             
         }
+
+        private void txtSubTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
     }
 }

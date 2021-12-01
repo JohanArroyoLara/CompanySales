@@ -23,7 +23,7 @@ namespace DA
             newOrder.Date = order.Date.Date;
             newOrder.State = order.State;
             newOrder.Term = order.Term.Date;
-
+            newOrder.Total = order.Total;
 
             DBContext.Order.Add(newOrder);
 
@@ -55,6 +55,7 @@ namespace DA
                 order.State = orderToFind.State;
                 order.Date = orderToFind.Date;
                 order.Term = orderToFind.Term;
+                order.Total = (decimal)orderToFind.Total;
 
                 return order;
             }
@@ -101,10 +102,32 @@ namespace DA
             newOrder.Date = employee.Date;
             newOrder.State = employee.State;
             newOrder.Term = employee.Term;
+            newOrder.Total = employee.Total;
 
             DBContext.Order.Attach(newOrder);
             DBContext.Entry(newOrder).State = EntityState.Modified;
             DBContext.SaveChanges();
+
+        }
+
+        public void updateOrderState(OrderDOM orderID)
+        {
+
+            List<Order> list = new List<Order>();
+            list = DBContext.Order.ToList();
+
+            foreach (Order o in list)
+            {
+                if (o.ID.Equals(orderID.Id))
+                {
+                    o.State = "Entregada";
+                    DBContext.Order.Attach(o);
+                    DBContext.Entry(o).State = EntityState.Modified;
+                    DBContext.SaveChanges();
+                }
+            }
+                
+            
 
         }
 
@@ -150,9 +173,31 @@ namespace DA
             List<OrderDOM> returnList = new List<OrderDOM>();
             list = DBContext.Order.ToList();
 
-            foreach (Order e in list)
+            foreach (Order o in list)
             {
-                returnList.Add(new OrderDOM(e.ID, e.Client_ID, e.State, e.Date, e.Term));
+                returnList.Add(new OrderDOM(o.ID, o.Client_ID, o.State, o.Date, o.Term, (decimal)o.Total));
+            }
+
+            return returnList;
+        }
+
+
+        public List<OrderDOM> clientOrders(int idClient)
+        {
+
+            List<Order> list = new List<Order>();
+            List<OrderDOM> returnList = new List<OrderDOM>();
+            list = DBContext.Order.ToList();
+
+            foreach (Order o in list)
+            {
+                if (!o.State.Equals("Entregada"))
+                {
+                    if (o.Client_ID.Equals(idClient))
+                    {
+                        returnList.Add(new OrderDOM(o.ID, o.Client_ID, o.State, o.Date, o.Term, (decimal)o.Total));
+                    }
+                }
             }
 
             return returnList;

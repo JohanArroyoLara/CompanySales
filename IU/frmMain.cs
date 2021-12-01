@@ -164,16 +164,12 @@ namespace IU
 
         private void facturaciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddBilling addBilling = new frmAddBilling();
-            addBilling.MdiParent = this;
-            addBilling.Show();
+            
         }
 
         private void reporteDeFacturasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmBillingReport billingReport = new frmBillingReport();
-            billingReport.MdiParent = this;
-            billingReport.Show();
+           
         }
 
         private void agregarToolStripMenuItem1_Click(object sender, EventArgs e)

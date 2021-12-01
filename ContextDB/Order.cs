@@ -27,6 +27,7 @@ namespace ContextDB
         public string State { get; set; }
         public System.DateTime Term { get; set; }
         public int Client_ID { get; set; }
+        public Nullable<decimal> Total { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Assignments> Assignments { get; set; }

@@ -39,6 +39,11 @@ namespace BL
             orderDao.updateOrder(order);
         }
 
+        public void updateOrderState(OrderDOM order)
+        {
+            orderDao.updateOrderState(order);
+        }
+
         public void addOrderDetail(OrderDetailsDom order)
         {
             orderDao.addOrderDetails(order);
