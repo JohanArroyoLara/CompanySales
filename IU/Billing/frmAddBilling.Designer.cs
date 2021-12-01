@@ -30,7 +30,6 @@ namespace IU.Billing
         private void InitializeComponent()
         {
             this.lblID = new System.Windows.Forms.Label();
-            this.txtClientID = new System.Windows.Forms.TextBox();
             this.lblCode = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSubTotal = new System.Windows.Forms.TextBox();
@@ -42,7 +41,7 @@ namespace IU.Billing
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbClients = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblID
@@ -50,27 +49,18 @@ namespace IU.Billing
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Rockwell", 18F);
             this.lblID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.lblID.Location = new System.Drawing.Point(12, 50);
+            this.lblID.Location = new System.Drawing.Point(12, 44);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(224, 27);
             this.lblID.TabIndex = 29;
             this.lblID.Text = "Cédula del cliente:";
-            // 
-            // txtClientID
-            // 
-            this.txtClientID.Location = new System.Drawing.Point(281, 52);
-            this.txtClientID.MaxLength = 9;
-            this.txtClientID.Name = "txtClientID";
-            this.txtClientID.Size = new System.Drawing.Size(239, 20);
-            this.txtClientID.TabIndex = 28;
-            this.txtClientID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClientID_KeyPress);
             // 
             // lblCode
             // 
             this.lblCode.AutoSize = true;
             this.lblCode.Font = new System.Drawing.Font("Rockwell", 18F);
             this.lblCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.lblCode.Location = new System.Drawing.Point(127, 142);
+            this.lblCode.Location = new System.Drawing.Point(127, 109);
             this.lblCode.Name = "lblCode";
             this.lblCode.Size = new System.Drawing.Size(109, 27);
             this.lblCode.TabIndex = 31;
@@ -94,6 +84,7 @@ namespace IU.Billing
             this.txtSubTotal.Name = "txtSubTotal";
             this.txtSubTotal.Size = new System.Drawing.Size(165, 20);
             this.txtSubTotal.TabIndex = 36;
+            this.txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnInvoice
             // 
@@ -178,13 +169,13 @@ namespace IU.Billing
             this.textBox3.Text = "Monto";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // comboBox1
+            // cbClients
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(281, 79);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(239, 21);
-            this.comboBox1.TabIndex = 46;
+            this.cbClients.FormattingEnabled = true;
+            this.cbClients.Location = new System.Drawing.Point(281, 52);
+            this.cbClients.Name = "cbClients";
+            this.cbClients.Size = new System.Drawing.Size(239, 21);
+            this.cbClients.TabIndex = 46;
             // 
             // frmAddBilling
             // 
@@ -192,7 +183,7 @@ namespace IU.Billing
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(241)))), ((int)(((byte)(221)))));
             this.ClientSize = new System.Drawing.Size(830, 485);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbClients);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -205,7 +196,6 @@ namespace IU.Billing
             this.Controls.Add(this.txtSubTotal);
             this.Controls.Add(this.lblCode);
             this.Controls.Add(this.lblID);
-            this.Controls.Add(this.txtClientID);
             this.Name = "frmAddBilling";
             this.Text = "Facturación";
             this.ResumeLayout(false);
@@ -216,7 +206,6 @@ namespace IU.Billing
         #endregion
 
         private System.Windows.Forms.Label lblID;
-        private System.Windows.Forms.TextBox txtClientID;
         private System.Windows.Forms.Label lblCode;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSubTotal;
@@ -228,6 +217,6 @@ namespace IU.Billing
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbClients;
     }
 }

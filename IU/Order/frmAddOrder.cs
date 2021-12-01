@@ -110,7 +110,6 @@ namespace IU.Order
             }
 
             txtObservations.Text = "";
-            textBoxQuantity.Text = "";
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -172,11 +171,11 @@ namespace IU.Order
                     }
 
 
-                    MessageBox.Show("Orden agregado con éxito");
+                    MessageBox.Show("Pedido agregado con éxito");
                 }
                 else
                 {
-                    MessageBox.Show("Ya existe un orden registrado con este id");
+                    MessageBox.Show("Ya existe un pedido registrado con este id");
                 }
 
             }
@@ -185,6 +184,10 @@ namespace IU.Order
                 MessageBox.Show("Por favor, rellene todas las casillas");
             }
         }
-        
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

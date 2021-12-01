@@ -55,7 +55,7 @@ namespace DA
 
                     if ((b.BillingDate.Date >= date1.Date) && (b.BillingDate.Date<=date2.Date))
                     {
-                        BillingDOM billing = new BillingDOM(b.ID, b.ClientID, b.OrderID, b.SubTotal);
+                        BillingDOM billing = new BillingDOM(b.ID,  b.OrderID, b.ClientID, b.SubTotal);
                         billing.BillingDate = b.BillingDate;
                         returnList.Add(billing);
                     }

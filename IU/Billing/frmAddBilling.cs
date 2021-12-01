@@ -16,17 +16,18 @@ namespace IU.Billing
     {
 
         RegularExpressions regularExpressions = new RegularExpressions();
+        private List<ClientDOM> clients = null;
 
         public frmAddBilling()
         {
             InitializeComponent();
-            ClientManager orderM = new ClientManager();
-            List<ClientDOM> orders = orderM.clientsList();
+            ClientManager clientM = new ClientManager();
+            clients = clientM.clientsList();
             int counter = 0;
-            foreach (var item in orders)
+            foreach (var item in clients)
             {
 
-                comboBox1.Items.Add(orders.ElementAt(counter).Id + "  -  " + orders.ElementAt(counter).FirstName);
+                cbClients.Items.Add(clients.ElementAt(counter).FirstName);
                 counter = counter + 1;
             }
         }
@@ -58,11 +59,25 @@ namespace IU.Billing
             orderPrice.Items.Clear();
             int total = 0;
 
-
-            if (regularExpressions.allTextBoxesFilled(txtClientID))
+            if (cbClients.SelectedIndex == -1)
             {
+                MessageBox.Show("Porfavor seleccione un empleado a eliminar");
+            }
+            else
+            {
+                int id = 0;
+                int counter = 0;
+                foreach (var item in clients)
+                {
+                    if (cbClients.SelectedItem.ToString().Equals(clients.ElementAt(counter).FirstName))
+                    {
+                        id = clients.ElementAt(counter).Id;
+                    }
+                    counter = counter + 1;
+                }
 
-                int clientID = int.Parse(txtClientID.Text);
+
+                int clientID = id;
 
 
                 if (clientManager.getClient(clientID) != null)
@@ -74,12 +89,9 @@ namespace IU.Billing
                     {
                         orderID.Items.Add(item.Id);
                         orderDate.Items.Add(item.Date.ToString("dd-MM-yyyy"));
+                        orderPrice.Items.Add(item.Total);
+                        total += int.Parse(item.Total.ToString());
 
-                    }
-
-                    foreach (int item in orderID.Items)
-                    {
-                        total += item;
                     }
 
                     txtSubTotal.Text = total.ToString();
@@ -90,11 +102,6 @@ namespace IU.Billing
                     MessageBox.Show("No existe un cliente con esa cédula");
                 }
 
-
-            }
-            else
-            {
-                MessageBox.Show("Por favor, digite una cédula");
             }
             
         }
@@ -102,24 +109,50 @@ namespace IU.Billing
         private void button1_Click(object sender, EventArgs e)
         {
 
-            //BillingManager billingManager = new BillingManager();
-            //BillingDOM billing = new BillingDOM();
+            BillingManager billingManager = new BillingManager();
+            BillingDOM billing = new BillingDOM();
+            OrderManager orderManager = new OrderManager();
+            List<OrderDOM> orders = new List<OrderDOM>();
 
-            //for (int i = 0; i < orderID.Items.Count; i++)
-            //{
+            if (cbClients.SelectedIndex == -1)
+            {
+                MessageBox.Show("Porfavor seleccione un empleado a eliminar");
+            }
+            else
+            {
+                int id = 0;
+                int counter = 0;
+                foreach (var item in clients)
+                {
+                    if (cbClients.SelectedItem.ToString().Equals(clients.ElementAt(counter).FirstName))
+                    {
+                        id = clients.ElementAt(counter).Id;
+                    }
+                    counter = counter + 1;
+                }
 
-            //    billing = new BillingDOM();
 
-            //    if (billingManager.addBilling(billing))
-            //    {
-            //        MessageBox.Show("Facturación realizada con éxito");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("ERROR realizando la facturación");
-            //    }
+                int clientID = id;
 
-            //}
+                orders = orderManager.clientOrders(clientID);
+
+                foreach (OrderDOM item in orders)
+                {
+
+                    billing = new BillingDOM(item.Client_ID, item.Id, item.Total);
+
+                    if (billingManager.addBilling(billing))
+                    {
+                        MessageBox.Show("Facturación realizada con éxito");
+                    }
+                    else
+                    {
+                        MessageBox.Show("ERROR realizando la facturación");
+                    }
+
+                }
+
+            }
 
         }
 
