@@ -50,13 +50,16 @@ namespace IU
             this.facturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeFacturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarOrdenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarOrdenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminarOrdenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.todosLosClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.agregarOrdenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultarOrdenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -206,7 +209,10 @@ namespace IU
             this.facturasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.facturaciónToolStripMenuItem,
             this.reporteDeFacturasToolStripMenuItem,
-            this.agregarOrdenToolStripMenuItem});
+            this.agregarOrdenToolStripMenuItem,
+            this.editarOrdenToolStripMenuItem,
+            this.eliminarOrdenToolStripMenuItem,
+            this.consultarOrdenToolStripMenuItem});
             this.facturasToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(241)))), ((int)(((byte)(224)))));
             this.facturasToolStripMenuItem.Name = "facturasToolStripMenuItem";
             this.facturasToolStripMenuItem.Size = new System.Drawing.Size(125, 119);
@@ -226,6 +232,27 @@ namespace IU
             this.reporteDeFacturasToolStripMenuItem.Text = "Reporte de facturas";
             this.reporteDeFacturasToolStripMenuItem.Click += new System.EventHandler(this.reporteDeFacturasToolStripMenuItem_Click);
             // 
+            // agregarOrdenToolStripMenuItem
+            // 
+            this.agregarOrdenToolStripMenuItem.Name = "agregarOrdenToolStripMenuItem";
+            this.agregarOrdenToolStripMenuItem.Size = new System.Drawing.Size(337, 42);
+            this.agregarOrdenToolStripMenuItem.Text = "Agregar orden";
+            this.agregarOrdenToolStripMenuItem.Click += new System.EventHandler(this.agregarOrdenToolStripMenuItem_Click);
+            // 
+            // editarOrdenToolStripMenuItem
+            // 
+            this.editarOrdenToolStripMenuItem.Name = "editarOrdenToolStripMenuItem";
+            this.editarOrdenToolStripMenuItem.Size = new System.Drawing.Size(337, 42);
+            this.editarOrdenToolStripMenuItem.Text = "Editar orden";
+            this.editarOrdenToolStripMenuItem.Click += new System.EventHandler(this.editarOrdenToolStripMenuItem_Click);
+            // 
+            // eliminarOrdenToolStripMenuItem
+            // 
+            this.eliminarOrdenToolStripMenuItem.Name = "eliminarOrdenToolStripMenuItem";
+            this.eliminarOrdenToolStripMenuItem.Size = new System.Drawing.Size(337, 42);
+            this.eliminarOrdenToolStripMenuItem.Text = "Eliminar orden";
+            this.eliminarOrdenToolStripMenuItem.Click += new System.EventHandler(this.eliminarOrdenToolStripMenuItem_Click);
+            // 
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -243,7 +270,7 @@ namespace IU
             this.todosLosClientesToolStripMenuItem,
             this.clienteToolStripMenuItem});
             this.consultarToolStripMenuItem1.Name = "consultarToolStripMenuItem1";
-            this.consultarToolStripMenuItem1.Size = new System.Drawing.Size(221, 42);
+            this.consultarToolStripMenuItem1.Size = new System.Drawing.Size(224, 42);
             this.consultarToolStripMenuItem1.Text = "Consultar";
             // 
             // todosLosClientesToolStripMenuItem
@@ -266,7 +293,7 @@ namespace IU
             // 
             this.agregarToolStripMenuItem.Image = global::IU.Properties.Resources.add;
             this.agregarToolStripMenuItem.Name = "agregarToolStripMenuItem";
-            this.agregarToolStripMenuItem.Size = new System.Drawing.Size(221, 42);
+            this.agregarToolStripMenuItem.Size = new System.Drawing.Size(224, 42);
             this.agregarToolStripMenuItem.Text = "Agregar";
             this.agregarToolStripMenuItem.Click += new System.EventHandler(this.agregarToolStripMenuItem_Click);
             // 
@@ -274,16 +301,16 @@ namespace IU
             // 
             this.eliminarToolStripMenuItem1.Image = global::IU.Properties.Resources.remove;
             this.eliminarToolStripMenuItem1.Name = "eliminarToolStripMenuItem1";
-            this.eliminarToolStripMenuItem1.Size = new System.Drawing.Size(221, 42);
+            this.eliminarToolStripMenuItem1.Size = new System.Drawing.Size(224, 42);
             this.eliminarToolStripMenuItem1.Text = "Eliminar";
             this.eliminarToolStripMenuItem1.Click += new System.EventHandler(this.eliminarToolStripMenuItem1_Click);
             // 
-            // agregarOrdenToolStripMenuItem
+            // consultarOrdenToolStripMenuItem
             // 
-            this.agregarOrdenToolStripMenuItem.Name = "agregarOrdenToolStripMenuItem";
-            this.agregarOrdenToolStripMenuItem.Size = new System.Drawing.Size(337, 42);
-            this.agregarOrdenToolStripMenuItem.Text = "Agregar orden";
-            this.agregarOrdenToolStripMenuItem.Click += new System.EventHandler(this.agregarOrdenToolStripMenuItem_Click);
+            this.consultarOrdenToolStripMenuItem.Name = "consultarOrdenToolStripMenuItem";
+            this.consultarOrdenToolStripMenuItem.Size = new System.Drawing.Size(337, 42);
+            this.consultarOrdenToolStripMenuItem.Text = "Consultar orden";
+            this.consultarOrdenToolStripMenuItem.Click += new System.EventHandler(this.consultarOrdenToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -297,7 +324,7 @@ namespace IU
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.Text = "Muebles 2000";
             this.statusStrip.ResumeLayout(false);
@@ -335,6 +362,9 @@ namespace IU
         private System.Windows.Forms.ToolStripMenuItem listaDeEmpleadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editarEmpleadoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarOrdenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editarOrdenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eliminarOrdenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultarOrdenToolStripMenuItem;
     }
 }
 

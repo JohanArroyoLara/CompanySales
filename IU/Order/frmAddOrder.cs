@@ -16,7 +16,7 @@ namespace IU.Order
     {
         RegularExpressions regularExpressions = new RegularExpressions();
 
-        OrderDetailsDom orderD = new OrderDetailsDom();
+        
      
 
         List<int> listProducts = new List<int>();
@@ -180,6 +180,10 @@ namespace IU.Order
                 MessageBox.Show("Por favor, rellene todas las casillas");
             }
         }
-        
+
+        private void textBoxQuantity_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

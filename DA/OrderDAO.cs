@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
+
 namespace DA
 {
    public class OrderDAO
@@ -64,6 +65,32 @@ namespace DA
 
         }
 
+
+        public List<OrderDetailsDom> getOrderDetails()
+        {
+
+            List<Order_Details> list = new List<Order_Details>();
+            List<OrderDetailsDom> returnList = new List<OrderDetailsDom>();
+            list = DBContext.Order_Details.ToList();
+
+
+
+            foreach (Order_Details e in list)
+            {
+
+               
+
+                returnList.Add(new OrderDetailsDom(e.ID, e.Product_ID, e.Order_ID, e.Quantity, e.Specifications));
+            }
+
+            return returnList;
+
+
+        }
+
+
+
+
         public void updateOrder(OrderDOM employee)
         {
 
@@ -97,6 +124,25 @@ namespace DA
 
         }
 
+
+        public Boolean removeOrderDetails(int id)
+        {
+            try
+            {
+                Order_Details newOrder = DBContext.Order_Details.Find(id);
+                DBContext.Entry(newOrder).State = EntityState.Deleted;
+                DBContext.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
+
+
         public List<OrderDOM> ordersList()
         {
 
@@ -111,6 +157,8 @@ namespace DA
 
             return returnList;
         }
+
+
 
         public Boolean addOrderDetails(OrderDetailsDom orderD)
         {

@@ -104,6 +104,24 @@
     <Compile Include="Order\frmAddOrder.Designer.cs">
       <DependentUpon>frmAddOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Order\frmConsultOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order\frmConsultOrder.Designer.cs">
+      <DependentUpon>frmConsultOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order\frmDeleteOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order\frmDeleteOrder.Designer.cs">
+      <DependentUpon>frmDeleteOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order\frmEditOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order\frmEditOrder.Designer.cs">
+      <DependentUpon>frmEditOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Products\frmAddProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +196,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Order\frmAddOrder.resx">
       <DependentUpon>frmAddOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order\frmConsultOrder.resx">
+      <DependentUpon>frmConsultOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order\frmDeleteOrder.resx">
+      <DependentUpon>frmDeleteOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order\frmEditOrder.resx">
+      <DependentUpon>frmEditOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Products\frmAddProduct.resx">
       <DependentUpon>frmAddProduct.cs</DependentUpon>

@@ -18,7 +18,7 @@ namespace DOM
       
        
 
-        public OrderDetailsDom(int iD, int product_ID, int order_ID, int quantity, string specifications, OrderDOM order, ProductDOM product)
+        public OrderDetailsDom(int iD, int product_ID, int order_ID, int quantity, string specifications)
         {
             ID = iD;
             Product_ID = product_ID;
@@ -28,9 +28,14 @@ namespace DOM
            
         }
 
+        public OrderDetailsDom(int iD)
+        {
+        }
+
         public OrderDetailsDom()
         {
         }
+
         public int ID1 { get => ID; set => ID = value; }
         public int Product_ID1 { get => Product_ID; set => Product_ID = value; }
         public int Order_ID1 { get => Order_ID; set => Order_ID = value; }

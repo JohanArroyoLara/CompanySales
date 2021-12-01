@@ -210,5 +210,26 @@ namespace IU
             frmSearchEmployee.MdiParent = this;
             frmSearchEmployee.Show();
         }
+
+        private void editarOrdenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEditOrder frmSearchEmployee = new frmEditOrder();
+            frmSearchEmployee.MdiParent = this;
+            frmSearchEmployee.Show();
+        }
+
+        private void eliminarOrdenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDeleteOrder frmDelete = new frmDeleteOrder();
+            frmDelete.MdiParent = this;
+            frmDelete.Show();
+        }
+
+        private void consultarOrdenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmConsultOrder frmDelete = new frmConsultOrder();
+            frmDelete.MdiParent = this;
+            frmDelete.Show();
+        }
     }
 }

@@ -79,6 +79,7 @@ namespace IU.Order
             this.textBoxQuantity.Name = "textBoxQuantity";
             this.textBoxQuantity.Size = new System.Drawing.Size(100, 22);
             this.textBoxQuantity.TabIndex = 13;
+            this.textBoxQuantity.TextChanged += new System.EventHandler(this.textBoxQuantity_TextChanged);
             // 
             // button1
             // 
