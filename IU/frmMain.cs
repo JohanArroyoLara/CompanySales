@@ -220,5 +220,12 @@ namespace IU
             billingReport.MdiParent = this;
             billingReport.Show();
         }
+
+        private void eliminarFacturaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDeleteBilling deleteBilling = new frmDeleteBilling();
+            deleteBilling.MdiParent = this;
+            deleteBilling.Show();
+        }
     }
 }

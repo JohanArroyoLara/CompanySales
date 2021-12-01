@@ -39,7 +39,7 @@ namespace IU.Billing
           
                 if (cbClients.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Porfavor seleccione nn cliente");
+                    MessageBox.Show("Por favor, seleccione un cliente");
                 }
                 else
                 {
