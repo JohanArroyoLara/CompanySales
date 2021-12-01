@@ -43,5 +43,11 @@ namespace BL
         {
             return orderDao.ordersList();
         }
+
+        public List<OrderDOM> clientOrders(int idClient)
+        {
+            return orderDao.clientOrders(idClient);
+        }
+
     }
 }

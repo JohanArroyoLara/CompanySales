@@ -20,6 +20,15 @@ namespace IU.Billing
         public frmAddBilling()
         {
             InitializeComponent();
+            ClientManager orderM = new ClientManager();
+            List<ClientDOM> orders = orderM.clientsList();
+            int counter = 0;
+            foreach (var item in orders)
+            {
+
+                comboBox1.Items.Add(orders.ElementAt(counter).Id + "  -  " + orders.ElementAt(counter).FirstName);
+                counter = counter + 1;
+            }
         }
 
         private void txtClientID_KeyPress(object sender, KeyPressEventArgs e)
@@ -39,27 +48,53 @@ namespace IU.Billing
 
         private void btnSearchProduct_Click(object sender, EventArgs e)
         {
+
+            ClientManager clientManager = new ClientManager();
             ProductManager productManager = new ProductManager();
-            ProductDOM product = new ProductDOM();
+            OrderManager orderManager = new OrderManager();
+            List<OrderDOM> orders = new List<OrderDOM>();
+            orderID.Items.Clear();
+            orderDate.Items.Clear();
+            orderPrice.Items.Clear();
+            int total = 0;
 
-            if (regularExpressions.allTextBoxesFilled(txtProductCode))
+
+            if (regularExpressions.allTextBoxesFilled(txtClientID))
             {
-                product = productManager.getProduct(int.Parse(txtProductCode.Text));
 
-                if (product != null)
+                int clientID = int.Parse(txtClientID.Text);
+
+
+                if (clientManager.getClient(clientID) != null)
                 {
-                    txtPrice.Text = product.SalesPrice.ToString();
+
+                    orders = orderManager.clientOrders(clientID);
+
+                    foreach (OrderDOM item in orders)
+                    {
+                        orderID.Items.Add(item.Id);
+                        orderDate.Items.Add(item.Date.ToString("dd-MM-yyyy"));
+
+                    }
+
+                    foreach (int item in orderID.Items)
+                    {
+                        total += item;
+                    }
+
+                    txtSubTotal.Text = total.ToString();
+
                 }
                 else
                 {
-                    MessageBox.Show("No se encontró el producto");
-                    txtPrice.Text = "";
+                    MessageBox.Show("No existe un cliente con esa cédula");
                 }
+
 
             }
             else
             {
-                MessageBox.Show("Por favor, digite un código");
+                MessageBox.Show("Por favor, digite una cédula");
             }
             
         }
@@ -67,60 +102,24 @@ namespace IU.Billing
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (regularExpressions.allTextBoxesFilled(txtClientID, txtProductCode, txtQuantity,
-                txtPrice))
-            {
+            //BillingManager billingManager = new BillingManager();
+            //BillingDOM billing = new BillingDOM();
 
-                ClientManager clientManager = new ClientManager();
-                ProductManager productManager = new ProductManager();
-                ProductDOM product = new ProductDOM();
+            //for (int i = 0; i < orderID.Items.Count; i++)
+            //{
 
-                int clientID = int.Parse(txtClientID.Text);
-                product = productManager.getProduct(int.Parse(txtProductCode.Text));
+            //    billing = new BillingDOM();
 
-                
-                if (int.Parse(txtQuantity.Text)<=product.Quantity)
-                {
-                    if (clientManager.getClient(clientID) != null)
-                    {
+            //    if (billingManager.addBilling(billing))
+            //    {
+            //        MessageBox.Show("Facturación realizada con éxito");
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("ERROR realizando la facturación");
+            //    }
 
-                        BillingManager billingManager = new BillingManager();
-
-                        int subTotal = int.Parse(txtQuantity.Text) * int.Parse(txtPrice.Text);
-
-                        BillingDOM billing = new BillingDOM(clientID,
-                            int.Parse(txtProductCode.Text),
-                         /*se ocupa cambiar a orderID*/   clientID, subTotal);
-
-                        if (billingManager.addBilling(billing))
-                        {
-                            MessageBox.Show("Facturación realizada con éxito");
-                            //product.InvetoryQuantity = product.InvetoryQuantity - int.Parse(txtQuantity.Text);
-                            //productManager.updateProduct(product);
-                        }
-                        else
-                        {
-                            MessageBox.Show("ERROR realizando la facturación");
-                        }
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("No existe un cliente con esa cédula");
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("La cantidad solicitada excede la del inventario\n" +
-                        "Unidades en el inventario: " + product.Quantity);
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Por favor, rellene todas las casillas");
-            }
+            //}
 
         }
 
@@ -131,16 +130,18 @@ namespace IU.Billing
 
         private void txtQuantity_KeyUp(object sender, KeyEventArgs e)
         {
-            if (regularExpressions.allTextBoxesFilled(txtQuantity, txtPrice))
-            {
-                int subTotal = int.Parse(txtQuantity.Text) * int.Parse(txtPrice.Text);
-                txtSubTotal.Text = subTotal.ToString();
-            }
-            else
-            {
-                txtSubTotal.Text = "";
-            }
+           
             
         }
+
+        private void txtSubTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
     }
 }
