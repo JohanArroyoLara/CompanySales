@@ -34,17 +34,23 @@ namespace IU
         private void btnDeleteClient_Click(object sender, EventArgs e)
         {
             ClientManager clientManager = new ClientManager();
-            int id = 0;
-            int counter = 0;
-            foreach (var item in clients)
+            if (cbClient.SelectedIndex == -1)
             {
-                if (cbClient.SelectedItem.ToString().Equals(clients.ElementAt(counter).FirstName))
-                {
-                    id = clients.ElementAt(counter).Id;
-                }
-                counter = counter + 1;
+                MessageBox.Show("Porfavor seleccione un empleado a eliminar");
             }
-          
+            else
+            {
+                int id = 0;
+                int counter = 0;
+                foreach (var item in clients)
+                {
+                    if (cbClient.SelectedItem.ToString().Equals(clients.ElementAt(counter).FirstName))
+                    {
+                        id = clients.ElementAt(counter).Id;
+                    }
+                    counter = counter + 1;
+                }
+
 
                 if (clientManager.getClient(id) != null)
                 {
@@ -67,7 +73,7 @@ namespace IU
                 {
                     MessageBox.Show("No existen clientes registrados con esa cédula");
                 }
-
+            }
 
         }
 

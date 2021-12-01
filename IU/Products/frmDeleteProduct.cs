@@ -34,20 +34,26 @@ namespace IU
         private void btnDeleteProduct_Click(object sender, EventArgs e)
         {
             ProductManager productManager = new ProductManager();
-
-            int id = 0;
-            int counter = 0;
-            foreach (var item in products)
+            if (cbmuebles.SelectedIndex == -1)
             {
-                if (cbmuebles.SelectedItem.ToString().Equals(products.ElementAt(counter).Name))
-                {
-                    id = products.ElementAt(counter).Id;
-                }
-                counter = counter + 1;
+                MessageBox.Show("Porfavor seleccione un empleado a eliminar");
             }
+            else
+            {
+
+                int id = 0;
+                int counter = 0;
+                foreach (var item in products)
+                {
+                    if (cbmuebles.SelectedItem.ToString().Equals(products.ElementAt(counter).Name))
+                    {
+                        id = products.ElementAt(counter).Id;
+                    }
+                    counter = counter + 1;
+                }
 
 
-            if (productManager.getProduct(id) != null)
+                if (productManager.getProduct(id) != null)
                 {
                     DialogResult result = MessageBox.Show("¿Seguro que desea eliminar el producto?",
                         "ATENCIÓN", MessageBoxButtons.YesNo);
@@ -62,7 +68,7 @@ namespace IU
                         {
                             MessageBox.Show("Error eliminando el producto");
                         }
-                        
+
                     }
                 }
                 else
@@ -70,8 +76,8 @@ namespace IU
                     MessageBox.Show("No existen productos registrados con ese código");
                 }
 
-           
 
+            }
             
         }
 

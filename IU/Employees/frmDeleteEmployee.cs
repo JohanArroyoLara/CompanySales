@@ -34,8 +34,13 @@ namespace IU.Employees
         private void btnDeleteClient_Click(object sender, EventArgs e)
         {
             EmployeeManager employeeManager = new EmployeeManager();
-
-            int id = 0;
+            if (cbEmployee.SelectedIndex == -1)
+            {
+             MessageBox.Show("Porfavor seleccione un empleado a eliminar");
+            }
+            else
+            {
+                int id = 0;
             int counter = 0;
             foreach (var item in employees)
             {
@@ -46,8 +51,10 @@ namespace IU.Employees
                 counter = counter + 1;
             }
 
-
-            if (employeeManager.getEmployee(id) != null)
+          
+             
+          
+                if (employeeManager.getEmployee(id) != null)
                 {
                     DialogResult result = MessageBox.Show("¿Seguro que desea eliminar al empleado?",
                         "ATENCIÓN", MessageBoxButtons.YesNo);
@@ -68,7 +75,7 @@ namespace IU.Employees
                 {
                     MessageBox.Show("No existen empleados registrados con esa cédula");
                 }
-
+            }
           
         }
 
