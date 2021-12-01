@@ -144,10 +144,13 @@ namespace IU.Billing
 
                     if (billingManager.addBilling(billing))
                     {
-                        //ACTUALIZA EL ESTADO DE LA ORDEN A ENTREGADA
-                        //item.State = "Entregada";
-                        //orderManager.updateOrder(item);
+                        orderManager.updateOrderState(item);
                         MessageBox.Show("Facturación realizada con éxito");
+                        orderID.Items.Clear();
+                        orderDate.Items.Clear();
+                        orderPrice.Items.Clear();
+                        txtSubTotal.Text = "";
+
                     }
                     else
                     {

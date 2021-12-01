@@ -83,6 +83,27 @@ namespace DA
 
         }
 
+        public void updateOrderState(OrderDOM orderID)
+        {
+
+            List<Order> list = new List<Order>();
+            list = DBContext.Order.ToList();
+
+            foreach (Order o in list)
+            {
+                if (o.ID.Equals(orderID.Id))
+                {
+                    o.State = "Entregada";
+                    DBContext.Order.Attach(o);
+                    DBContext.Entry(o).State = EntityState.Modified;
+                    DBContext.SaveChanges();
+                }
+            }
+                
+            
+
+        }
+
         public Boolean removeOrder(int id)
         {
             try
