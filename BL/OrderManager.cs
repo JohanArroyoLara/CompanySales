@@ -43,8 +43,12 @@ namespace BL
             orderDao.addOrderDetails(order);
         }
 
+        public List<OrderDetailsDom> getOrderDetails(OrderDOM order)
+        {
+            return orderDao.getOrderDetails(order);
+        }
 
-        public List<OrderDOM> orderlist()
+            public List<OrderDOM> orderlist()
         {
             return orderDao.ordersList();
         }

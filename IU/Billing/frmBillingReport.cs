@@ -93,5 +93,70 @@ namespace IU.Billing
         {
             regularExpressions.onlyNumbers(e);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            BillingManager billingManager = new BillingManager();
+            BillingDOM billing = new BillingDOM();
+            int idBilling;
+
+            if (grdBilling.DataSource != null)
+            {
+                if (grdBilling.Rows.Count > 0)
+                {
+                    idBilling = (int) grdBilling.CurrentCell.Value;
+                    billing = billingManager.getBilling(idBilling);
+                    if (billing!=null)
+                    {
+                        MessageBox.Show(billingDetails(billing), "Detalles de la factura");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al consultar factura");
+                    }
+                   
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione una factura");
+                }
+               
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una factura");
+            }
+           
+        }
+
+
+        private string billingDetails(BillingDOM billing)
+        {
+            string details = "";
+            OrderManager orderManager = new OrderManager();
+            OrderDOM order = new OrderDOM();
+            ProductManager productManager = new ProductManager();
+            ProductDOM product = new ProductDOM();
+            order = orderManager.getOrder(billing.OrderID);
+            List<OrderDetailsDom> orderDetails = orderManager.getOrderDetails(order);
+
+            details += "Fecha de facturación: " + billing.BillingDate.ToString() + "\n";
+            details += "Número de orden: " + billing.OrderID.ToString() + "\n";
+            details += "\nInfo del pedido: \n";
+
+            foreach (OrderDetailsDom item in orderDetails)
+            {
+                details += "\n";
+                product = productManager.getProduct(item.Product_ID1);
+                details += "Producto: " + product.Name + "      " + "Precio unitario: " + product.SalesPrice;
+            }
+
+            details += "\n\nTOTAL: " + order.Total;
+
+            return details;
+        }
+
+
     }
 }
