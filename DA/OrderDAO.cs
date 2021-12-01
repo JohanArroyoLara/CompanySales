@@ -22,7 +22,7 @@ namespace DA
             newOrder.Date = order.Date.Date;
             newOrder.State = order.State;
             newOrder.Term = order.Term.Date;
-
+            newOrder.Total = order.Total;
 
             DBContext.Order.Add(newOrder);
 
@@ -54,6 +54,7 @@ namespace DA
                 order.State = orderToFind.State;
                 order.Date = orderToFind.Date;
                 order.Term = orderToFind.Term;
+                order.Total = (decimal)orderToFind.Total;
 
                 return order;
             }
@@ -74,6 +75,7 @@ namespace DA
             newOrder.Date = employee.Date;
             newOrder.State = employee.State;
             newOrder.Term = employee.Term;
+            newOrder.Total = employee.Total;
 
             DBContext.Order.Attach(newOrder);
             DBContext.Entry(newOrder).State = EntityState.Modified;
@@ -106,7 +108,7 @@ namespace DA
 
             foreach (Order e in list)
             {
-                returnList.Add(new OrderDOM(e.ID, e.Client_ID, e.State, e.Date, e.Term));
+                returnList.Add(new OrderDOM(e.ID, e.Client_ID, e.State, e.Date, e.Term, (decimal)e.Total));
             }
 
             return returnList;

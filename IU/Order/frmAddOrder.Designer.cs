@@ -45,6 +45,8 @@ namespace IU.Order
             this.dtpicker = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.txtObservations = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -94,10 +96,10 @@ namespace IU.Order
             // 
             // txtMuebles
             // 
-            this.txtMuebles.Location = new System.Drawing.Point(540, 64);
+            this.txtMuebles.Location = new System.Drawing.Point(410, 102);
             this.txtMuebles.Multiline = true;
             this.txtMuebles.Name = "txtMuebles";
-            this.txtMuebles.Size = new System.Drawing.Size(209, 222);
+            this.txtMuebles.Size = new System.Drawing.Size(339, 159);
             this.txtMuebles.TabIndex = 15;
             // 
             // lblFurniture
@@ -121,7 +123,7 @@ namespace IU.Order
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(449, 64);
+            this.label2.Location = new System.Drawing.Point(407, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 17);
             this.label2.TabIndex = 18;
@@ -157,7 +159,7 @@ namespace IU.Order
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(410, 328);
+            this.label4.Location = new System.Drawing.Point(393, 294);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(117, 17);
             this.label4.TabIndex = 22;
@@ -165,7 +167,7 @@ namespace IU.Order
             // 
             // dtpicker
             // 
-            this.dtpicker.Location = new System.Drawing.Point(540, 323);
+            this.dtpicker.Location = new System.Drawing.Point(540, 294);
             this.dtpicker.Name = "dtpicker";
             this.dtpicker.Size = new System.Drawing.Size(209, 22);
             this.dtpicker.TabIndex = 23;
@@ -187,11 +189,30 @@ namespace IU.Order
             this.txtObservations.Size = new System.Drawing.Size(262, 83);
             this.txtObservations.TabIndex = 25;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(470, 343);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 17);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "Total";
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Enabled = false;
+            this.txtTotal.Location = new System.Drawing.Point(567, 340);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(160, 22);
+            this.txtTotal.TabIndex = 27;
+            // 
             // frmAddOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtTotal);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtObservations);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dtpicker);
@@ -234,5 +255,7 @@ namespace IU.Order
         private System.Windows.Forms.DateTimePicker dtpicker;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtObservations;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtTotal;
     }
 }

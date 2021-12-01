@@ -21,7 +21,8 @@ namespace IU.Order
 
         List<int> listProducts = new List<int>();
         private int lastid = 0;
-
+        private decimal total = 0;
+        private int contP = 0;
 
         public frmAddOrder()
         {
@@ -89,8 +90,7 @@ namespace IU.Order
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            txtMuebles.Text += "\n"+comboBox2.Text+"\n"+"  ";
+        { 
             ProductManager product = new ProductManager();
             List<ProductDOM> products = product.productList();
             int counter3 = 0;
@@ -101,12 +101,16 @@ namespace IU.Order
                 {
                   
                     listProducts.Add(products.ElementAt(counter3).Id);
-                    
+                    total += (products.ElementAt(counter3).SalesPrice * decimal.Parse(textBoxQuantity.Text));
+                    txtTotal.Text = total.ToString();
+                    contP = contP + 1;
+                    txtMuebles.Text += "Producto: "+ contP +"  "+ comboBox2.Text + "  x "+textBoxQuantity.Text+" obs: "+ txtObservations.Text+ Environment.NewLine;
                 }
                 counter3 = counter3+1;
             }
 
-
+            txtObservations.Text = "";
+            textBoxQuantity.Text = "";
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -140,9 +144,10 @@ namespace IU.Order
               
                 OrderDOM order = new OrderDOM(int.Parse(textBoxID.Text),
                                                 id,
-                                                "Espera",
+                                                "En Proceso",
                                                 DateTime.Now,
-                                                DateTime.Now
+                                                dtpicker.Value,
+                                                decimal.Parse(txtTotal.Text)
                                                 );
 
 
@@ -160,7 +165,7 @@ namespace IU.Order
                         orderDetails.Product_ID1 = listProducts.ElementAt(counter2);
                         orderDetails.Order_ID1 = order.Id;
                         orderDetails.Quantity1 = int.Parse(textBoxQuantity.Text);
-                        orderDetails.Specifications1 = "";
+                        orderDetails.Specifications1 = txtObservations.Text;
                         ordertManager.addOrderDetail(orderDetails);
                         counter2 = counter2 + 1;
 

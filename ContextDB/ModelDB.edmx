@@ -53,6 +53,7 @@
           <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Term" Type="datetime" Nullable="false" />
           <Property Name="Client_ID" Type="int" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Order_Details">
           <Key>
@@ -291,6 +292,7 @@
           <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Term" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Client_ID" Type="Int32" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="Assignments" Relationship="ComapanySalesDBModel.FK_Assignments_Order" FromRole="Order" ToRole="Assignments" />
           <NavigationProperty Name="Billing" Relationship="ComapanySalesDBModel.FK_Billing_Order" FromRole="Order" ToRole="Billing" />
           <NavigationProperty Name="Client" Relationship="ComapanySalesDBModel.FK_Order_Client" FromRole="Order" ToRole="Client" />
@@ -455,6 +457,7 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="ComapanySalesDBModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
                 <ScalarProperty Name="Term" ColumnName="Term" />
                 <ScalarProperty Name="State" ColumnName="State" />
