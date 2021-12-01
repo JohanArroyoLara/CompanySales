@@ -26,8 +26,26 @@ namespace IU.Billing
         {
             BillingManager billingManager = new BillingManager();
             
-            if (regularExpressions.allTextBoxesFilled(txtID))
-            {
+          
+                if (cbClients.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Porfavor seleccione nn cliente");
+                }
+                else
+                {
+                    int id = 0;
+                    int counter = 0;
+                    foreach (var item in clients)
+                    {
+                        if (cbClients.SelectedItem.ToString().Equals(clients.ElementAt(counter).FirstName))
+                        {
+                            id = clients.ElementAt(counter).Id;
+                        }
+                        counter = counter + 1;
+                    }
+
+
+                    int clientID = id;
 
                 ClientManager clientManager = new ClientManager();
                 DateTime date1 = dtpSince.Value;

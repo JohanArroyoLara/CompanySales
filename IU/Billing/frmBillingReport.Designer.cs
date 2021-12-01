@@ -66,7 +66,7 @@ namespace IU.Billing
             this.grdBilling.AllowUserToAddRows = false;
             this.grdBilling.AllowUserToDeleteRows = false;
             this.grdBilling.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdBilling.Location = new System.Drawing.Point(12, 114);
+            this.grdBilling.Location = new System.Drawing.Point(107, 128);
             this.grdBilling.Name = "grdBilling";
             this.grdBilling.ReadOnly = true;
             this.grdBilling.Size = new System.Drawing.Size(540, 118);
@@ -120,8 +120,9 @@ namespace IU.Billing
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(145, 249);
+            this.label3.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            this.label3.Location = new System.Drawing.Point(102, 266);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(125, 19);
             this.label3.TabIndex = 24;
@@ -130,7 +131,7 @@ namespace IU.Billing
             // txtTotal
             // 
             this.txtTotal.Enabled = false;
-            this.txtTotal.Location = new System.Drawing.Point(297, 250);
+            this.txtTotal.Location = new System.Drawing.Point(294, 273);
             this.txtTotal.MaxLength = 9;
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(106, 20);

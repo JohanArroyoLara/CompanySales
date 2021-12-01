@@ -50,6 +50,7 @@ namespace IU
             this.facturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeFacturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarOrdenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.todosLosClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +58,9 @@ namespace IU
             this.agregarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarOrdenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.facturasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.facturaciónToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeFacturasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -278,12 +282,32 @@ namespace IU
             this.eliminarToolStripMenuItem1.Text = "Eliminar";
             this.eliminarToolStripMenuItem1.Click += new System.EventHandler(this.eliminarToolStripMenuItem1_Click);
             // 
-            // agregarOrdenToolStripMenuItem
+            // facturasToolStripMenuItem1
+            // 
+            this.facturasToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.facturaciónToolStripMenuItem1,
+            this.reporteDeFacturasToolStripMenuItem1});
+            this.facturasToolStripMenuItem1.Name = "facturasToolStripMenuItem1";
+            this.facturasToolStripMenuItem1.Size = new System.Drawing.Size(229, 34);
+            this.facturasToolStripMenuItem1.Text = "Facturas";
+            // 
+            // facturaciónToolStripMenuItem1
+            // 
+            this.facturaciónToolStripMenuItem1.Name = "facturaciónToolStripMenuItem1";
+            this.facturaciónToolStripMenuItem1.Size = new System.Drawing.Size(275, 34);
+            this.facturaciónToolStripMenuItem1.Text = "Facturación";
+            this.facturaciónToolStripMenuItem1.Click += new System.EventHandler(this.facturaciónToolStripMenuItem1_Click);
             // 
             this.agregarOrdenToolStripMenuItem.Name = "agregarOrdenToolStripMenuItem";
             this.agregarOrdenToolStripMenuItem.Size = new System.Drawing.Size(337, 42);
             this.agregarOrdenToolStripMenuItem.Text = "Agregar orden";
             this.agregarOrdenToolStripMenuItem.Click += new System.EventHandler(this.agregarOrdenToolStripMenuItem_Click);
+            // reporteDeFacturasToolStripMenuItem1
+            // 
+            this.reporteDeFacturasToolStripMenuItem1.Name = "reporteDeFacturasToolStripMenuItem1";
+            this.reporteDeFacturasToolStripMenuItem1.Size = new System.Drawing.Size(275, 34);
+            this.reporteDeFacturasToolStripMenuItem1.Text = "Reporte de facturas";
+            this.reporteDeFacturasToolStripMenuItem1.Click += new System.EventHandler(this.reporteDeFacturasToolStripMenuItem1_Click);
             // 
             // frmMain
             // 
@@ -335,6 +359,9 @@ namespace IU
         private System.Windows.Forms.ToolStripMenuItem listaDeEmpleadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editarEmpleadoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarOrdenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem facturasToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem facturaciónToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem reporteDeFacturasToolStripMenuItem1;
     }
 }
 

@@ -39,9 +39,10 @@ namespace IU
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(33, 30);
+            this.label1.Location = new System.Drawing.Point(56, 36);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(154, 19);
+            this.label1.Size = new System.Drawing.Size(190, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cédula del cliente";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -60,24 +61,35 @@ namespace IU
             this.btnDeleteClient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(67)))), ((int)(((byte)(54)))));
             this.btnDeleteClient.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteClient.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteClient.Location = new System.Drawing.Point(36, 112);
+            this.btnDeleteClient.Location = new System.Drawing.Point(48, 133);
+            this.btnDeleteClient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDeleteClient.Name = "btnDeleteClient";
-            this.btnDeleteClient.Size = new System.Drawing.Size(155, 39);
+            this.btnDeleteClient.Size = new System.Drawing.Size(207, 48);
             this.btnDeleteClient.TabIndex = 2;
             this.btnDeleteClient.Text = "Eliminar";
             this.btnDeleteClient.UseVisualStyleBackColor = false;
             this.btnDeleteClient.Click += new System.EventHandler(this.btnDeleteClient_Click);
             // 
+            // cbClient
+            // 
+            this.cbClient.FormattingEnabled = true;
+            this.cbClient.Location = new System.Drawing.Point(48, 88);
+            this.cbClient.Name = "cbClient";
+            this.cbClient.Size = new System.Drawing.Size(207, 24);
+            this.cbClient.TabIndex = 3;
+            // 
             // frmDeleteClient
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(244)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(230, 158);
+            this.ClientSize = new System.Drawing.Size(307, 194);
+            this.Controls.Add(this.cbClient);
             this.Controls.Add(this.btnDeleteClient);
             this.Controls.Add(this.txtClientID);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmDeleteClient";
             this.Text = "Eliminar Cliente";
             this.ResumeLayout(false);

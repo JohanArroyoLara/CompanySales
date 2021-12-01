@@ -210,5 +210,19 @@ namespace IU
             frmSearchEmployee.MdiParent = this;
             frmSearchEmployee.Show();
         }
+
+        private void facturaciónToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmAddBilling addBilling = new frmAddBilling();
+            addBilling.MdiParent = this;
+            addBilling.Show();
+        }
+
+        private void reporteDeFacturasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmBillingReport billingReport = new frmBillingReport();
+            billingReport.MdiParent = this;
+            billingReport.Show();
+        }
     }
 }
