@@ -108,7 +108,7 @@ namespace DA
 
             foreach (Order o in list)
             {
-                returnList.Add(new OrderDOM(o.ID, o.Client_ID, o.State, o.Date, o.Term));
+                returnList.Add(new OrderDOM(o.ID, o.Client_ID, o.State, o.Date, o.Term, (decimal)o.Total));
             }
 
             return returnList;
@@ -126,7 +126,7 @@ namespace DA
             {
                 if (o.Client_ID.Equals(idClient))
                 {
-                    returnList.Add(new OrderDOM(o.ID, o.Client_ID, o.State, o.Date, o.Term));
+                    returnList.Add(new OrderDOM(o.ID, o.Client_ID, o.State, o.Date, o.Term,(decimal)o.Total));
                 }
             }
 
