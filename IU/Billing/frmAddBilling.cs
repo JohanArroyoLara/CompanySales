@@ -61,7 +61,7 @@ namespace IU.Billing
 
             if (cbClients.SelectedIndex == -1)
             {
-                MessageBox.Show("Porfavor seleccione un empleado a eliminar");
+                MessageBox.Show("Porfavor seleccione un cliente");
             }
             else
             {
@@ -116,7 +116,7 @@ namespace IU.Billing
 
             if (cbClients.SelectedIndex == -1)
             {
-                MessageBox.Show("Porfavor seleccione un empleado a eliminar");
+                MessageBox.Show("Porfavor seleccione un cliente");
             }
             else
             {
@@ -144,6 +144,7 @@ namespace IU.Billing
 
                     if (billingManager.addBilling(billing))
                     {
+                        //ACTUALIZA EL ESTADO DE LA ORDEN A ENTREGADA
                         //item.State = "Entregada";
                         //orderManager.updateOrder(item);
                         MessageBox.Show("Facturación realizada con éxito");
